@@ -1,8 +1,40 @@
 import React from 'react'
+import CardFormulario from './Forms/CardFormulario'
+import { Formik, useFormik } from 'formik'
+import LabelForm from './Forms/LabelForm'
+import InputForm from './Forms/InputForm'
 
 const Login = () => {
+
+  const onSubmitFormulario = (values)=>{
+    console.log(values);
+  }
+
+  const {handleSubmit, handleChange}=useFormik({
+    initialValues:{
+      email:'',
+      password:''
+    },
+    onSubmit:(values)=>{
+      onSubmitFormulario(values)
+    }
+  })
+
   return (
-    <div>Login</div>
+    <CardFormulario img={'/public/img/fotoLogin.png'}>
+      <div>
+          <h1>Iniciar sesión</h1>
+          <form onSubmit={handleSubmit}>
+            <LabelForm htmlFor={'Email'}>Email</LabelForm>
+            <InputForm handleChange={handleChange} name={'email'} type={'email'}/>
+            <LabelForm htmlFor={'Password'}>Password</LabelForm>
+            <InputForm handleChange={handleChange} name={'password'} type={'password'}/>
+            <button type='submit'>Login</button>
+          </form>
+        </div>
+    
+    </CardFormulario>
+    
   )
 }
 

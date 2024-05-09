@@ -1,5 +1,5 @@
 export const routes={
     home: '/',
-    inicioSesion: '/Login',
-    registrarse: '/Sign'
+    inicioSesion: '/src/components/Login.jsx',
+    registrarse: '/src/components/Sign.jsx'
 }

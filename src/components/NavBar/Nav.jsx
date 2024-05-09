@@ -44,11 +44,11 @@ const Nav = () => {
           </div>
 
           <div className="flex items-center ml-8">
-            <NavLink to={routes.registrarse}>
+            <Link to={routes.registrarse}>
             <Button>
-                Signup
+                Sign up
             </Button>
-            </NavLink>
+            </Link>
             <NavLink to={routes.inicioSesion}>
             <Button>
                 Login
