@@ -6,11 +6,12 @@ export default {
     extend: {
       colors:{
         fondo: '#ffffff',
-        primary: '#5c059b',
-        secondary:'#1E293B'
+        register: '#2C62B2',
+        negro: '#000000'
+        
       },
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
+        'poppins': ["Poppins", "sans-serif"]
       }
     },
   },
