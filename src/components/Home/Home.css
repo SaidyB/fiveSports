@@ -1,106 +1,98 @@
-
-.home{
-    margin-top: 6rem;
-    width: 100%;
-    max-height: 100vh;
-    height: 100%;
-    border: 1px solid red;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-family: 'Poppins';
-    box-sizing: border-box;
-    align-items: center;
-
+.home {
+  margin: 6rem 1rem 0;
+  max-width: 100vw;
+  height: 50rem;
+  max-height: 90vh;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid red;
 }
 
-.container_home{
-
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    height: 379px;
-    border: 1px solid blue;
-    margin: 3rem auto 2rem auto;
-    border-radius: 10px;
-    background-color: #F0F0F0;
+.container_home {
+  display: flex;
+  justify-content: center;
+  max-width: 90%;
+  margin: 0 auto;
+  border: 1px solid crimson;
+  border-radius: 10px;
+  background-color: #f0f0f0;
 }
 
 .img1,
-.img2{
-    display: flex;
-    align-items: center;
+.img2 {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  height: auto;
 }
 
-.img1 img, .img2 img {
-    height: auto;
-    width: 100%;
-    object-fit: contain;
+.img1 img,
+.img2 img {
+  height: auto;
+  width: 100%;
+  object-fit: contain;
 }
 
-
-.img1 img{
-    height: 7rem;
-    margin-bottom: 3rem;
+.img1 img {
+  height: 7rem;
+  margin-bottom: 3rem;
 }
 
-.img2 img{
-    margin-top: 1.5rem;
-    height: 22rem;
-    width: 30rem;
+.img2 img {
+  margin-top: 1.5rem;
+  height: 22rem;
+  width: 30rem;
 }
 
- /*ESTILOS CATEGORIAS*/
- .titulo {
-    display: flex;
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
-    width: 90%; /* Ancho del 90% de la pantalla */
-    margin: 0 auto; /* Centrado horizontal */
-    position: relative; /* Posición relativa para los pseudoelementos */
-  }
-
-  /* Estilos para las líneas decorativas */
-  .titulo::before,
-  .titulo::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    height: 2px;
-    background-color: black;
-  }
-  .titulo::before {
-    left: 0px;
-    width: 42%; /* Ancho del 5% de la pantalla */
-  }
-  .titulo::after {
-    right: 0;
-    width: 42%; /* Ancho del 5% de la pantalla */
-  }
-
-  /* Estilos para el texto */
-  h2 {
-    background-color: white; /* Para cubrir las líneas que atraviesen el texto */
-    padding: 0 20px; /* Espaciado alrededor del texto */
-    z-index: 1; /* Colocar el texto por encima de las líneas */
-  }
-
-.sectionCategory{
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 90%;
-    border: 1px solid palevioletred;
-    background-color: #F0F0F0;
-    align-items: center;
+/*ESTILOS CATEGORIAS*/
+.titulo {
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  width: 90%; /* Ancho del 90% de la pantalla */
+  margin: 0 auto; /* Centrado horizontal */
+  position: relative; /* Posición relativa para los pseudoelementos */
 }
 
-.cardCategory{
-    display: flex;
-    width: 24.5%;
-    flex-direction: column;
-    justify-content: center;
- 
+/* Estilos para las líneas decorativas */
+.titulo::before,
+.titulo::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  background-color: black;
+}
+.titulo::before {
+  left: 0px;
+  width: 42%; /* Ancho del 5% de la pantalla */
+}
+.titulo::after {
+  right: 0;
+  width: 42%; /* Ancho del 5% de la pantalla */
 }
 
+/* Estilos para el texto */
+h2 {
+  background-color: white; /* Para cubrir las líneas que atraviesen el texto */
+  padding: 0 20px; /* Espaciado alrededor del texto */
+  z-index: 1; /* Colocar el texto por encima de las líneas */
+}
+
+.sectionCategory {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  border: 1px solid palevioletred;
+  background-color: #f0f0f0;
+  align-items: center;
+}
+
+.cardCategory {
+  display: flex;
+  width: 24.5%;
+  flex-direction: column;
+  justify-content: center;
+}
