@@ -25,3 +25,74 @@
   max-width: 100%;
   height: auto;
 }
+
+.img1 img,
+.img2 img {
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+}
+
+.img1 img {
+  height: 7rem;
+  margin-bottom: 3rem;
+}
+
+.img2 img {
+  margin-top: 1.5rem;
+  height: 22rem;
+  width: 30rem;
+}
+
+/*ESTILOS CATEGORIAS*/
+.titulo {
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  width: 90%; /* Ancho del 90% de la pantalla */
+  margin: 0 auto; /* Centrado horizontal */
+  position: relative; /* Posición relativa para los pseudoelementos */
+}
+
+/* Estilos para las líneas decorativas */
+.titulo::before,
+.titulo::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  background-color: black;
+}
+.titulo::before {
+  left: 0px;
+  width: 42%; /* Ancho del 5% de la pantalla */
+}
+.titulo::after {
+  right: 0;
+  width: 42%; /* Ancho del 5% de la pantalla */
+}
+
+/* Estilos para el texto */
+h2 {
+  background-color: white; /* Para cubrir las líneas que atraviesen el texto */
+  padding: 0 20px; /* Espaciado alrededor del texto */
+  z-index: 1; /* Colocar el texto por encima de las líneas */
+}
+
+.sectionCategory {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  border: 1px solid palevioletred;
+  background-color: #f0f0f0;
+  align-items: center;
+}
+
+.cardCategory {
+  display: flex;
+  width: 24.5%;
+  flex-direction: column;
+  justify-content: center;
+}
