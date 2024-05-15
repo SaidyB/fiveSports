@@ -39,7 +39,7 @@ const Products = () => {
             <div className="texto">
               <p>{elemento.name}</p>
               <p>{elemento.price}</p>
-              <p>stock:{elemento.stock}</p>
+              <p>{elemento.stock}</p>
               <p>{elemento.description}</p>
             </div>
           </div>
@@ -63,7 +63,7 @@ const Products = () => {
             <div className="texto">
               <p>{elemento.name}</p>
               <p>{elemento.price}</p>
-              <p>stock:{elemento.stock}</p>
+              <p>{elemento.stock}</p>
               <p>{elemento.description}</p>
             </div>
           </div>
