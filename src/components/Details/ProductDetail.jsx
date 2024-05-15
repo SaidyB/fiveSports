@@ -4,8 +4,8 @@ import { ContextGlobal } from './utils/GlobalContextReducer';
 import './ProductosCard.css';
 
 const ProductDetail = () => {
-  const { state } = useContext(ContextGlobal);
   const history = useHistory();
+  const { state } = useContext(ContextGlobal);
 
   // Obtener el producto seleccionado de la URL
   const productId = history.location.pathname.split('/').pop();
