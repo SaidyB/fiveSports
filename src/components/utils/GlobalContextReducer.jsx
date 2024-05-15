@@ -1,9 +1,11 @@
-import { createContext, useContext, useReducer } from "react";
+import axios from "axios";
+import { createContext, useContext, useReducer, useEffect } from "react";
 
 export const ContextGlobal = createContext();
 
 export const initialState = {
-  darkMode: false
+  darkMode: false,
+  products: [],
 };
 
 const objectReducer = (state, action) => {
@@ -16,11 +18,21 @@ const objectReducer = (state, action) => {
       };
       default:
         return state;
+    case 'SET_PRODUCTS':
+      return {
+        ...state,
+        products: action.payload,
+      };
   }
 };
 
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(objectReducer, initialState);
+
+  useEffect(()=>{
+    axios('/src/db/listOfProducts.JSON')
+    .then(res => dispatch({type: 'SET_PRODUCTS', payload: res.data.products}))
+  },[])
 
   let data = {state, dispatch}
 
