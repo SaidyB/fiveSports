@@ -1,0 +1,49 @@
+.product-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .product-title {
+    text-align: left;
+  }
+  
+  .go-detail {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  
+  .go-detail button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .go-detail button:hover {
+    background-color: #0056b3;
+  }
+  
+  .product-info {
+    margin-top: 10px;
+  }
+  
+  .product-info p {
+    margin-bottom: 10px;
+  }
+  
+  .product-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .product-images img {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 5px;
+  }
