@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
-import './ProductosCard.css';
-import { ContextGlobal } from '../utils/GlobalContextReducer';
-import { useParams } from 'react-router-dom';
+import React, { useContext } from "react";
+import "./ProductosCard.css";
+import { ContextGlobal } from "../utils/GlobalContextReducer";
+import { useParams } from "react-router-dom";
+import BackButton from "../BackButton/ButtonDetail";
 
 const ProductDetail = () => {
   const { state } = useContext(ContextGlobal);
@@ -18,17 +19,19 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className='container'><div className='card-grid'>
-    <div className='card'>
-      <h1>{product.name}</h1>
-      <p>{product.description}</p>
-      <img src={product.img} alt={product.name} />
-      <p>Precio: {product.price}</p>
-      <p>Stock: {product.stock}</p>
-      <p>Categoría: {product.category}</p>
+    <div className="container">
+      <div className="card-grid">
+        <div className="card">
+          <h1>{product.name}</h1>
+          <p>{product.description}</p>
+          <img src={product.img} alt={product.name} />
+          <p>Precio: {product.price}</p>
+          <p>Stock: {product.stock}</p>
+          <p>Categoría: {product.category}</p>
+          <BackButton />
+        </div>
+      </div>
     </div>
-  </div></div>
-    
   );
 };
 
