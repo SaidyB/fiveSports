@@ -1,0 +1,13 @@
+version: "3.4"
+services:
+ fivesports_docker:
+   build: .
+   container_name: fivesports_docker
+   ports:
+     - 8000:8000
+   working_dir: /app
+   volumes:
+     - type: bind
+       source: ./
+       target: /app
+   tty: true
