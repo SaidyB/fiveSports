@@ -23,11 +23,8 @@ const ProductDetail = () => {
       <div className="card-grid">
         <div className="card">
           <h1>{product.name}</h1>
-          <p>{product.description}</p>
-          <img src={product.img} alt={product.name} />
           <p>Precio: {product.price}</p>
-          <p>Stock: {product.stock}</p>
-          <p>Categoría: {product.category}</p>
+          <img src={product.img} alt={product.name} />
           <BackButton />
         </div>
       </div>
