@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./CreateProduct.css";
 import axios from "axios";
 
-const CreateProduct = () => {
+const CreateProduct = ({ products }) => {
   const [formData, setFormData] = useState({
-    nombre: "",
-    descripción: "",
-    imagen: "",
-    precio: "",
+    name: "",
+    description: "",
+    price: "",
     stock: "",
-    categoría: "",
+    category: "",
+    img: "",
   });
   const [error, setError] = useState("");
 
@@ -18,7 +18,7 @@ const CreateProduct = () => {
 
     // Validar si el nombre del producto ya existe
     const existingProduct = products.find(
-      (product) => product.nombre === formData.nombre
+      (product) => product.name === formData.name
     );
     if (existingProduct) {
       setError("¡Error! El nombre del producto ya existe.");
@@ -39,12 +39,12 @@ const CreateProduct = () => {
 
     // Reiniciar el formulario después de enviar los datos
     setFormData({
-      nombre: "",
-      descripción: "",
-      imagen: "",
-      precio: "",
+      name: "",
+      price: "",
       stock: "",
-      categoría: "",
+      description: "",
+      category: "",
+      img: "",
     });
   };
 
@@ -63,47 +63,24 @@ const CreateProduct = () => {
       <h2 className="create-product-heading">Crear Nuevo Producto</h2>
       <form onSubmit={handleSubmit} className="create-product-form">
         <div className="form-group">
-          <label htmlFor="nombre">Nombre del Producto:</label>
+          <label htmlFor="name">Nombre del Producto:</label>
           <input
             type="text"
-            id="nombre"
-            name="nombre"
-            value={formData.nombre}
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             className="form-control"
             placeholder="Nombre del Producto"
           />
         </div>
         <div className="form-group">
-          <label htmlFor="descripción">Descripción del Producto:</label>
-          <textarea
-            id="descripción"
-            name="descripción"
-            value={formData.descripción}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Descripción del Producto"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="imagen">URL de la Imagen:</label>
+          <label htmlFor="price">Precio:</label>
           <input
             type="text"
-            id="imagen"
-            name="imagen"
-            value={formData.imagen}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="URL de la Imagen"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="precio">Precio:</label>
-          <input
-            type="text"
-            id="precio"
-            name="precio"
-            value={formData.precio}
+            id="price"
+            name="price"
+            value={formData.price}
             onChange={handleChange}
             className="form-control"
             placeholder="Precio"
@@ -122,20 +99,44 @@ const CreateProduct = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="categoría">Categoría:</label>
+          <label htmlFor="description">Descripción del Producto:</label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Descripción del Producto"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="category">Categoría:</label>
           <input
             type="text"
-            id="categoría"
-            name="categoría"
-            value={formData.categoría}
+            id="category"
+            name="category"
+            value={formData.category}
             onChange={handleChange}
             className="form-control"
             placeholder="Categoría"
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="img">URL de la Imagen:</label>
+          <input
+            type="text"
+            id="img"
+            name="img"
+            value={formData.img}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="URL de la Imagen"
+          />
+        </div>
+
         {error && <div className="error">{error}</div>}
         <button type="submit" className="btn-submit">
-          Crear Producto
+          Agregar Producto
         </button>
       </form>
     </div>
