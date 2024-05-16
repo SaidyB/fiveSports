@@ -6,8 +6,8 @@ import { routes } from "./components/utils/routes";
 import Sign from "./components/Sign";
 import Login from "./components/Login";
 import ProductDetail from "./components/Details/ProductDetail";
-import Admin from "./components/admi/Admin";
-import Footer from "./components/footer/Footer";
+import Footer from "./components/Footer/Footer";
+import CreateProduct from "./components/CreateProduct/CreateProduct";
 function App() {
   return (
     <>
@@ -17,12 +17,10 @@ function App() {
           <Route index element={<Home />} />
           <Route path={routes.registrarse} element={<Sign />} />
           <Route path={routes.inicioSesion} element={<Login />} />
-          <Route path={`${routes.detalles}/:id`} element={<ProductDetail/>}/>
-          <Route path={routes.admin} element={<Admin/>} />
-
+          <Route path={`${routes.detalles}/:id`} element={<ProductDetail />} />
+          <Route path={routes.admin} element={<CreateProduct />} />
         </Routes>
-        <Footer/>
-
+        <Footer />
       </div>
     </>
   );
