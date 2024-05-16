@@ -1,7 +1,7 @@
-export const routes={
-    home: '/',
-    inicioSesion: '/Login.jsx',
-    registrarse: '/Sign.jsx',
-    detalles: '/ProductDetail.jsx',
-    admin: '/Admin.jsx'
-}
+export const routes = {
+  home: "/",
+  inicioSesion: "/Login",
+  registrarse: "/Sign",
+  detalles: "/ProductDetail",
+  admin: "/Admin",
+};
