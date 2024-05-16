@@ -1,6 +1,10 @@
 import React from 'react';
 import { useGlobalReduceState } from '../utils/GlobalContextReducer';
 import '../Home/Home.css';
+import { Link } from 'react-router-dom';
+import { routes } from "../utils/routes";
+import Button from '../Button';
+
 
 // Función para mezclar los elementos de un array
 const shuffleArray = (array) => {
@@ -21,6 +25,7 @@ const Products = () => {
   const firstRow = shuffledProducts.slice(0, 4);
   const secondRow = shuffledProducts.slice(4, 8);
 
+
   return (
     <div
       style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
@@ -29,9 +34,16 @@ const Products = () => {
         {firstRow.map((elemento) => (
           <div key={elemento.id} className="producto">
             <img src={elemento.img} alt={elemento.name} />
-            <div className="texto">
+            <div className="texto mb-2">
               <p>{elemento.name}</p>
             </div>
+            <Link to={`${routes.detalles}/${elemento.id}`}><Button>
+              
+              Ver Detalle
+          </Button></Link>
+            
+
+            
           </div>
         ))}
       </div>
@@ -39,9 +51,14 @@ const Products = () => {
         {secondRow.map((elemento) => (
           <div key={elemento.id} className="producto">
             <img src={elemento.img} alt={elemento.name} />
-            <div className="texto">
+            <div className="texto mb-2">
               <p>{elemento.name}</p>
             </div>
+            <Link to={`${routes.detalles}/${elemento.id}`}><Button>
+              
+              Ver Detalle
+          </Button></Link>
+
           </div>
         ))}
       </div>
