@@ -16,6 +16,9 @@ const Home = () => {
         </div>
       </div>
 
+      <div className='titulo'>
+        <h2 className='font-bold text-2xl'>Recomendados</h2>
+      </div>
       <Products/>
 
 
