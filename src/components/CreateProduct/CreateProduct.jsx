@@ -1,145 +1,98 @@
-import React, { useState } from "react";
-import "./CreateProduct.css";
-import axios from "axios";
+import { useGlobalReduceState } from "../utils/GlobalContextReducer";
+import React, { useState } from 'react';
+import './CreateProduct.css'
 
-const CreateProduct = ({ products }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    stock: "",
-    category: "",
-    img: "",
+const CreateProduct = () => {
+  const { state, dispatch } = useGlobalReduceState();
+  const [newProduct, setNewProduct] = useState({
+    id: '',
+    name: '',
+    price: '',
+    stock: '',
+    description: '',
+    category: '',
+    img: ''
   });
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    // Validar si el nombre del producto ya existe
-    const existingProduct = products.find(
-      (product) => product.name === formData.name
-    );
-    if (existingProduct) {
-      setError("¡Error! El nombre del producto ya existe.");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5001/products",
-        formData
-      );
-      if (response.status === 201) {
-        console.log("Producto creado exitosamente");
-      }
-    } catch (error) {
-      console.error("Error al crear el producto:", error);
-    }
-
-    // Reiniciar el formulario después de enviar los datos
-    setFormData({
-      name: "",
-      price: "",
-      stock: "",
-      description: "",
-      category: "",
-      img: "",
-    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewProduct({ ...newProduct, [name]: value });
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    // Limpiar el error al empezar a escribir en el formulario
-    setError("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Crear un nuevo producto con un ID único
+    const productWithId = { ...newProduct, id: state.products.length + 1 };
+    dispatch({ type: 'SET_PRODUCTS', payload: [...state.products, productWithId] });
+    // Limpiar el formulario después de enviar
+    setNewProduct({
+      id: '',
+      name: '',
+      price: '',
+      stock: '',
+      description: '',
+      category: '',
+      img: ''
+    });
   };
 
   return (
     <div className="create-product-container">
       <h2 className="create-product-heading">Crear Nuevo Producto</h2>
       <form onSubmit={handleSubmit} className="create-product-form">
-        <div className="form-group">
-          <label htmlFor="name">Nombre del Producto:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Nombre del Producto"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="price">Precio:</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Precio"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="stock">Stock:</label>
-          <input
-            type="text"
-            id="stock"
-            name="stock"
-            value={formData.stock}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Stock"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="description">Descripción del Producto:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Descripción del Producto"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="category">Categoría:</label>
-          <input
-            type="text"
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Categoría"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="img">URL de la Imagen:</label>
-          <input
-            type="text"
-            id="img"
-            name="img"
-            value={formData.img}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="URL de la Imagen"
-          />
-        </div>
+      <input
+        type="text"
+        name="name"
+        placeholder="Nombre"
+        value={newProduct.name}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="number"
+        name="price"
+        placeholder="Precio"
+        value={newProduct.price}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="number"
+        name="stock"
+        placeholder="Stock"
+        value={newProduct.stock}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="description"
+        placeholder="Descripción"
+        value={newProduct.description}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="category"
+        placeholder="Categoría"
+        value={newProduct.category}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="img"
+        placeholder="URL de la imagen"
+        value={newProduct.img}
+        onChange={handleChange}
+        required
+      />
+      <button type="submit" className="btn-submit">Añadir Producto</button>
+    </form>
 
-        {error && <div className="error">{error}</div>}
-        <button type="submit" className="btn-submit">
-          Agregar Producto
-        </button>
-      </form>
     </div>
+    
   );
 };
 

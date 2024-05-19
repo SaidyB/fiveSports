@@ -2,8 +2,13 @@ import React from "react";
 import "./Home.css";
 import CardCategory from "./CardCategory";
 import Products from "../Products/Products";
+import { useGlobalReduceState } from "../utils/GlobalContextReducer";
+import CardProductos from "./CardProductos";
 
 const Home = () => {
+  const { state } = useGlobalReduceState();
+  const { products } = state;
+
   return (
     <div className='home '>
 
@@ -33,6 +38,22 @@ const Home = () => {
         <CardCategory img={'/public/img/Categorias/ciclismo.png'}>Ciclismo</CardCategory>
 
       </article>
+
+      <div className='titulo'>
+        <h2 className='font-bold text-2xl'>Todos los productos</h2>
+      </div>
+
+      <div className="card-todosP">
+        <div className="cardP">
+          {
+            products.map((item)=><CardProductos img={item.img} nombre={item.name}/>)
+          }
+        </div>
+
+      </div>
+
+
+
     </div>
   );
 };
