@@ -133,6 +133,7 @@ h2 {
     height: 80%;
     /* border: 1px solid blue; */
   }
+  
 
 /* Media Queries para Tablets y Desktop */
 @media (min-width: 768px) {

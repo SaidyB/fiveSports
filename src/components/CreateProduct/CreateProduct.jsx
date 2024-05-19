@@ -39,7 +39,8 @@ const CreateProduct = () => {
 
   return (
     <div className="create-product-container">
-      <form onSubmit={handleSubmit}>
+      <h2 className="create-product-heading">Crear Nuevo Producto</h2>
+      <form onSubmit={handleSubmit} className="create-product-form">
       <input
         type="text"
         name="name"
@@ -88,7 +89,7 @@ const CreateProduct = () => {
         onChange={handleChange}
         required
       />
-      <button type="submit">Añadir Producto</button>
+      <button type="submit" className="btn-submit">Añadir Producto</button>
     </form>
 
     </div>

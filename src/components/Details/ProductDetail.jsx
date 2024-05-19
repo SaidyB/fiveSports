@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import './ProductosCard.css';
 import { ContextGlobal } from '../utils/GlobalContextReducer';
 import { useParams } from 'react-router-dom';
+import BlackButton from './BlackButton';
 
 const ProductDetail = () => {
   const { state } = useContext(ContextGlobal);
@@ -18,16 +19,19 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className='container'><div className='card-grid'>
-    <div className='card'>
-      <h1>{product.name}</h1>
-      <p>{product.description}</p>
-      <img src={product.img} alt={product.name} />
-      <p>Precio: {product.price}</p>
-      <p>Stock: {product.stock}</p>
-      <p>Categoría: {product.category}</p>
-    </div>
-  </div></div>
+    <div className='container'>
+      <div className='card-grid'>
+        <div className='card'>
+          <h1>{product.name}</h1>
+          <p>{product.description}</p>
+          <img src={product.img} alt={product.name} />
+          <p>Precio: {product.price}</p>
+          <p>Stock: {product.stock}</p>
+          <p>Categoría: {product.category}</p>
+          <BlackButton/>
+        </div>
+      </div>
+  </div>
     
   );
 };
