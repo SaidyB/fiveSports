@@ -6,7 +6,6 @@ import { routes } from "./components/utils/routes";
 import Sign from "./components/Sign";
 import Login from "./components/Login";
 import ProductDetail from "./components/Details/ProductDetail";
-import Admin from "./components/admi/Admin";
 import Footer from "./components/footer/Footer";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 function App() {

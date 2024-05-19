@@ -1,7 +1,6 @@
 import { useGlobalReduceState } from "../utils/GlobalContextReducer";
 import React, { useState } from 'react';
-import "./CreateProduct.css";
-
+import './CreateProduct.css'
 
 const CreateProduct = () => {
   const { state, dispatch } = useGlobalReduceState();
