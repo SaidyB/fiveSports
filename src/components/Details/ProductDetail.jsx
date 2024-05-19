@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import './ProductosCard.css';
 import { ContextGlobal } from '../utils/GlobalContextReducer';
@@ -19,6 +20,7 @@ const ProductDetail = () => {
   }
 
   return (
+
     <div className='container'>
       <div className='card-grid'>
         <div className='card'>
@@ -33,6 +35,7 @@ const ProductDetail = () => {
       </div>
   </div>
     
+
   );
 };
 

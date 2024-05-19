@@ -7,6 +7,7 @@ import Sign from "./components/Sign";
 import Login from "./components/Login";
 import ProductDetail from "./components/Details/ProductDetail";
 import Footer from "./components/footer/Footer";
+
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 function App() {
   return (
@@ -19,10 +20,8 @@ function App() {
           <Route path={routes.inicioSesion} element={<Login />} />
           <Route path={`${routes.detalles}/:id`} element={<ProductDetail/>}/>
           <Route path={routes.admin} element={<CreateProduct/>} />
-
         </Routes>
-        <Footer/>
-
+        <Footer />
       </div>
     </>
   );
