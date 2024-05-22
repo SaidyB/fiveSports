@@ -46,6 +46,7 @@ const Nav = () => {
 
           <div className={`md:flex items-center ${menuOpen ? 'block' : 'hidden'} w-full md:w-auto`}>
             <div className="flex flex-col md:flex-row md:items-center ml-0 md:ml-8 w-full md:w-auto">
+              <Link to={routes.verTodos} className="my-2 md:my-0 mr-9 text-register">Ver todos</Link>
               <Link to={routes.registrarse} className="my-2 md:my-0">
                 <Button>
                   Sign up
