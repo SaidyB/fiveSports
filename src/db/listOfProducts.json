@@ -7,14 +7,14 @@
       "stock": 9,
       "description": "Zapatillas de ultima generacion para el deporte",
       "category": "deportivas",
-      "img": "https://res.cloudinary.com/dnqfh2chg/image/upload/v1669326932/free-metcon-4-zapatillas-de-entrenamiento-TQMCZg_fvia3m.png"
+      "img": "https://cdn-images.farfetch-contents.com/15/28/24/70/15282470_26528262_1000.jpg"
     },
     {
       "id": 2,
       "name": "Raqueta Wilson Blade 100",
       "price": 14500,
       "stock": 16,
-      "description": "Tras casi 20 años de dominio, las raquetas de alto rendimiento Blade de Wilson continúan siendo la elección preferida de los ávidos competidores que buscan el máximo control, sensación y estabilidad.",
+      "description": "Máximo control, sensación y estabilidad.",
       "category": "deportivas",
       "img": "https://larrytennis.com/cdn/shop/files/WR149811U-WilsonBlade16x192_78f1e1b4-9897-425a-882c-68719f8ee112_2048x2048.jpg?v=1707281043"
     },
@@ -32,7 +32,7 @@
       "name": "Pelota Tenis Wilson Roland Garros",
       "price": 17800,
       "stock": 7,
-      "description": "Ofrece las prestaciones mas exigentes de los jugadores profesionales. Su felpa esta diseñada para repeler la humedad y suciedad, garantizando que siempre se mantenga su color fluorecente y garantizando gran visibilidad a los jugadores.",
+      "description": "Ofrece las prestaciones mas exigentes de los jugadores profesionales.",
       "category": "pelotas",
       "img": "https://larrytennis.com/cdn/shop/products/WRT129100_2_Roland_Garros_Official_Ball_Logo_b31bfc40-9781-47a3-8a30-aa00218ae5b2_2048x2048.jpg?v=1652469023"
     },
@@ -41,7 +41,7 @@
       "name": "Guayos Adidas Predador",
       "price": 265000,
       "stock": 9,
-      "description": "Siempre en evolución, los nuevos Predator 20 Mutator fueron diseñadas para proporcionar una total libertad de movimiento.",
+      "description": "Total libertad de movimiento.",
       "category": "deportivas",
       "img": "https://unitedstorecolombia.com/cdn/shop/products/e82c540e.jpg?v=1680121990"
     },
@@ -52,14 +52,14 @@
       "stock": 9,
       "description": "Balón de rugby de Nueva-Zelandia All-Blacks en tamaños T1-T2-T3",
       "category": "balones",
-      "img": "https://res.cloudinary.com/dnqfh2chg/image/upload/v1669326932/free-metcon-4-zapatillas-de-entrenamiento-TQMCZg_fvia3m.png"
+      "img": "https://http2.mlstatic.com/D_Q_NP_688442-MLU72867289730_112023-O.webp"
     },
     {
       "id": 7,
       "name": "Balon de baloncesto Spalding",
       "price": 250500,
       "stock": 9,
-      "description": "CONSTRUIDO PARA EL RENDIMIENTO: Vejiga de butilo balanceada rotacionalmente para la máxima retención de aire y bobinados de nailon para una excelente integridad estructural",
+      "description": "CONSTRUIDO PARA EL RENDIMIENTO",
       "category": "balones",
       "img": "https://m.media-amazon.com/images/I/91pLiy70AZS._AC_SL1500_.jpg"
     },
@@ -68,9 +68,9 @@
       "name": "Guantes Adidas (Pesas)",
       "price": 20500,
       "stock": 9,
-      "description": "Guantes de gimnasio ajustables para mujeres y hombres: estos guantes ajustables unisex adidas Essential son ideales para hombres o mujeres para todo tipo de entrenamientos, incluido el levantamiento de pesas; cuentan con correas de muñeca ajustables que se pueden asegurar para un ajuste a la medida",
+      "description": "Guantes de gimnasio ajustables para mujeres y hombres",
       "category": "deportivas",
-      "img": "https://res.cloudinary.com/dnqfh2chg/image/upload/v1669326932/free-metcon-4-zapatillas-de-entrenamiento-TQMCZg_fvia3m.png"
+      "img": "https://cdn1.totalcommerce.cloud/fitnessmarket/product-image/es/guantes-para-entrenamiento-ajustables-essencial-adgb_12423-s-1-1.webp"
     },
     {
       "id": 9,

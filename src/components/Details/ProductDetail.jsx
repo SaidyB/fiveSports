@@ -1,43 +1,41 @@
+
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { ContextGlobal } from './utils/GlobalContextReducer';
 import './ProductosCard.css';
+import { ContextGlobal } from '../utils/GlobalContextReducer';
+import { useParams } from 'react-router-dom';
+import BlackButton from './BlackButton';
 
 const ProductDetail = () => {
-  const history = useHistory();
   const { state } = useContext(ContextGlobal);
+  const { products } = state;
 
-  // Obtener el producto seleccionado de la URL
-  const productId = history.location.pathname.split('/').pop();
-  const product = state.products.find((p) => p.id === parseInt(productId));
+  const { id } = useParams();
+  const productId = parseInt(id);
 
-  // Función para regresar a la página anterior
-  const handleGoBack = () => {
-    history.goBack();
-  };
+  // Buscar el producto correspondiente
+  const product = products.find((item) => item.id === productId);
+
+  if (!product) {
+    return <div>Producto no encontrado</div>;
+  }
 
   return (
-    <div className="product-card">
-      {/* Título del producto alineado a la izquierda */}
-      <div className="product-title">
-        <h2>{product.title}</h2>
-      </div>
-      {/* Botón para regresar atrás alineado a la derecha */}
-      <div className="go-detail">
-        <button onClick={handleGoBack}>Volver</button>
-      </div>
-      {/* Contenido del producto */}
-      <div className="product-info">
-        {/* Descripción del producto */}
-        <p>{product.description}</p>
-        {/* Imágenes del producto */}
-        <div className="product-images">
-          {product.images.map((image, index) => (
-            <img key={index} src={image} alt={`Imagen ${index}`} />
-          ))}
+
+    <div className='container'>
+      <div className='card-grid'>
+        <div className='card'>
+          <h1>{product.name}</h1>
+          <p>{product.description}</p>
+          <img src={product.img} alt={product.name} />
+          <p>Precio: {product.price}</p>
+          <p>Stock: {product.stock}</p>
+          <p>Categoría: {product.category}</p>
+          <BlackButton/>
         </div>
       </div>
-    </div>
+  </div>
+    
+
   );
 };
 
