@@ -6,8 +6,7 @@ import { routes } from "./components/utils/routes";
 import Sign from "./components/Sign";
 import Login from "./components/Login";
 import ProductDetail from "./components/Details/ProductDetail";
-import Footer from "./components/footer/Footer";
-
+import Footer from "./components/Footer/Footer";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import Products from "./components/Products/Products";
 function App() {
@@ -20,8 +19,8 @@ function App() {
           {/* <Route path={routes.verTodos} element={}/> */}
           <Route path={routes.registrarse} element={<Sign />} />
           <Route path={routes.inicioSesion} element={<Login />} />
-          <Route path={`${routes.detalles}/:id`} element={<ProductDetail/>}/>
-          <Route path={routes.admin} element={<CreateProduct/>} />
+          <Route path={`${routes.detalles}/:id`} element={<ProductDetail />} />
+          <Route path={routes.admin} element={<CreateProduct />} />
         </Routes>
         <Footer />
       </div>
