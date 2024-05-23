@@ -4,11 +4,10 @@
   margin-top: 2rem; /* Ajustado para móvil */
   width: 100%;
   height: auto;
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   box-sizing: border-box;
   align-items: center;
 }
@@ -19,23 +18,23 @@
   justify-content: center;
   width: 90%;
   height: auto;
-  /* border: 1px solid blue; */
   margin: 1.5rem auto; /* Ajustado para móvil */
   border-radius: 10px;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 
-.img1, .img2 {
+.img1,
+.img2 {
   display: flex;
   align-items: center;
   justify-content: center; /* Alineación centrada */
   width: 100%; /* Ajustado para móvil */
 }
 
-.img1 img, .img2 img {
+.img1 img,
+.img2 img {
   width: 100%;
   object-fit: contain;
-  
 }
 
 .img1 img {
@@ -59,7 +58,8 @@
   position: relative;
 }
 
-.titulo::before, .titulo::after {
+.titulo::before,
+.titulo::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -102,56 +102,55 @@ h2 {
   justify-content: center;
   margin-bottom: 1rem; /* Espaciado entre tarjetas */
 }
-  /* Estilos de CardProducts */
-  /* Estilos para .cardProductsColumn */
+/* Estilos de CardProducts */
+/* Estilos para .cardProductsColumn */
+.cardProductsColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%; /* Ajustar a 100% para móviles */
+}
+
+/* Asegurar que el contenedor principal de las columnas ocupe toda la altura disponible */
+.cardProductsContainer {
+  display: flex;
+  flex-direction: column; /* Cambiar a columna para móviles */
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+.producto {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.45);
+  padding-bottom: 1%;
+}
+
+.producto img {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+}
+
+/* Media Queries para Tablets y Desktop */
+@media (min-width: 768px) {
   .cardProductsColumn {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    width: 100%; /* Ajustar a 100% para móviles */
+    width: 45%;
   }
-  
-  /* Asegurar que el contenedor principal de las columnas ocupe toda la altura disponible */
-  .cardProductsContainer {
-    display: flex;
-    flex-direction: column; /* Cambiar a columna para móviles */
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-  }
-  
+
   .producto {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     width: 80%;
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.45);
-    padding-bottom: 1%;
   }
-  
-  .producto img {
-    display: flex;
-    justify-content: center;
-    width: 200px;
-    height: 200px;
-  }
-  
-  /* Media Queries para Tablets y Desktop */
-  @media (min-width: 768px) {
-    .cardProductsColumn {
-      width: 45%;
-    }
-    
-    .producto {
-      width: 80%;
-    }
-  }
+}
 
-
-  /* .cardProducts{
+/* .cardProducts{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -162,50 +161,48 @@ h2 {
 
   } */
 
-  
-  
-
 /* Media Queries para Tablets y Desktop */
 @media (min-width: 768px) {
   .home {
-      padding-top: 0; /* Eliminar padding-top en pantallas más grandes */
-      margin-top: 6rem;
+    padding-top: 0; /* Eliminar padding-top en pantallas más grandes */
+    margin-top: 6rem;
   }
 
   .container_home {
-      flex-direction: row; /* Cambiado a fila para pantallas más grandes */
-      height: 379px;
-      margin: 3rem auto 2rem auto;
+    flex-direction: row; /* Cambiado a fila para pantallas más grandes */
+    height: 379px;
+    margin: 3rem auto 2rem auto;
   }
 
   .img1 img {
-      height: 7rem;
-      margin-bottom: 3rem;
+    height: 7rem;
+    margin-bottom: 3rem;
   }
 
   .img2 img {
-      height: 22rem;
-      width: 30rem;
-      margin-top: 1.5rem;
+    height: 22rem;
+    width: 30rem;
+    margin-top: 1.5rem;
   }
 
   .sectionCategory {
     flex-direction: row; /* Cambiado a fila para pantallas más grandes */
     justify-content: space-between;
     margin-bottom: 2rem;
-}
+  }
 
-.cardCategory {
+  .cardCategory {
     width: 33%; /* Ajustado para pantallas más grandes */
     margin-bottom: 0; /* Eliminar espaciado entre tarjetas */
-}
+  }
 
-  .titulo::before, .titulo::after {
-      width: 42%; /* Ajustado para pantallas más grandes */
+  .titulo::before,
+  .titulo::after {
+    width: 42%; /* Ajustado para pantallas más grandes */
   }
 
   h2 {
-      padding: 0 20px; /* Ajustado para pantallas más grandes */
+    padding: 0 20px; /* Ajustado para pantallas más grandes */
   }
 
   /* Estilos de CardProducts */
@@ -223,36 +220,35 @@ h2 {
   .producto {
     width: 80%;
   }
-  
+
   /* Estilos todos los productos */
   .card-todosP {
     width: 90%;
     margin: 0 auto; /* Centra el contenedor horizontalmente */
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajusta el tamaño mínimo de las tarjetas */
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(200px, 1fr)
+    ); /* Ajusta el tamaño mínimo de las tarjetas */
     gap: 20px; /* Espacio entre las tarjetas */
-    box-sizing: border-box; 
+    box-sizing: border-box;
     margin-bottom: 3rem;
     /* background-color: blue; */
   }
-  
+
   .cardP {
     display: contents; /* Permite que las tarjetas se posicionen correctamente dentro del grid */
     /* background-color: aqua; */
   }
-  
+
   .cardP > * {
     width: 100%; /* Asegura que cada tarjeta ocupe el espacio completo asignado por el grid */
-    box-sizing: border-box; 
+    box-sizing: border-box;
     /* background-color: aqua; */
   }
 
-  .cardP img{
+  .cardP img {
     width: 80%;
     height: 80%;
-
   }
-
-
-
 }
