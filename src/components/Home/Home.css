@@ -150,18 +150,6 @@ h2 {
   }
 }
 
-/* .cardProducts{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: "30px";
-    margin-top: 10px;
-    width: 90%;
-
-  } */
-
-/* Media Queries para Tablets y Desktop */
 @media (min-width: 768px) {
   .home {
     padding-top: 0; /* Eliminar padding-top en pantallas más grandes */
@@ -221,34 +209,5 @@ h2 {
     width: 80%;
   }
 
-  /* Estilos todos los productos */
-  .card-todosP {
-    width: 90%;
-    margin: 0 auto; /* Centra el contenedor horizontalmente */
-    display: grid;
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(200px, 1fr)
-    ); /* Ajusta el tamaño mínimo de las tarjetas */
-    gap: 20px; /* Espacio entre las tarjetas */
-    box-sizing: border-box;
-    margin-bottom: 3rem;
-    /* background-color: blue; */
-  }
-
-  .cardP {
-    display: contents; /* Permite que las tarjetas se posicionen correctamente dentro del grid */
-    /* background-color: aqua; */
-  }
-
-  .cardP > * {
-    width: 100%; /* Asegura que cada tarjeta ocupe el espacio completo asignado por el grid */
-    box-sizing: border-box;
-    /* background-color: aqua; */
-  }
-
-  .cardP img {
-    width: 80%;
-    height: 80%;
-  }
+  
 }

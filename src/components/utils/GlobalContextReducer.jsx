@@ -9,6 +9,8 @@ export const initialState = {
   products: [],
 };
 
+
+
 const objectReducer = (state, action) => {
   switch (action.type) {
     case "CHANGE_MODE":
@@ -39,6 +41,7 @@ export const ContextProvider = ({ children }) => {
           ...doc.data(),
         }));
         dispatch({ type: "SET_PRODUCTS", payload: products });
+        console.log(products)
       })
       .catch((error) => {
         console.error("Error fetching products: ", error);
