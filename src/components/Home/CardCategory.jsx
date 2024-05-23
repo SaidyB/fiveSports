@@ -3,7 +3,7 @@ import './Home.css'
 
 const CardCategory = ({img, children}) => {
   return (
-    <div className='cardCategory font-bold text-xl"'>
+    <div className='font-bold text-xl"'>
         <img src={img} alt=''/>
         {children}
     </div>

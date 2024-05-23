@@ -4,5 +4,6 @@ export const routes={
     registrarse: '/Sign',
     detalles: '/ProductDetail',
     admin: '/Admin',
-    verTodos: '/AllProducts'
+    verTodos: '/VerTodo',
+    categoria: '/categoria'
 }

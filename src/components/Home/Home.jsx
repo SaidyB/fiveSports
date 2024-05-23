@@ -3,7 +3,8 @@ import "./Home.css";
 import CardCategory from "./CardCategory";
 import Products from "../Products/Products";
 import { useGlobalReduceState } from "../utils/GlobalContextReducer";
-import CardProductos from "./CardProductos";
+import { Link } from "react-router-dom";
+import { routes } from "../utils/routes";
 
 const Home = () => {
   const { state } = useGlobalReduceState();
@@ -32,21 +33,18 @@ const Home = () => {
       </div>
       
       <article className='sectionCategory'>
-        <CardCategory img={'/public/img/Categorias/gimnasio.png'}>Gimnasio</CardCategory>
-        <CardCategory img={'/public/img/Categorias/deporte.png'}>Deportes</CardCategory>
-        <CardCategory img={'/public/img/Categorias/outdoor.png'}>Outdoor</CardCategory>
+        <Link className='cardCategory'to={`${routes.categoria}/gimnasio`}>
+          <CardCategory img={'/public/img/Categorias/gimnasio.png'}>Gimnasio</CardCategory>
+        </Link>
+
+        <Link className='cardCategory'to={`${routes.categoria}/deportes`}>
+          <CardCategory img={'/public/img/Categorias/deporte.png'}>Deportes</CardCategory>
+        </Link>
+        <Link className='cardCategory'to={`${routes.categoria}/outdoor`}>
+          <CardCategory img={'/public/img/Categorias/outdoor.png'}>Outdoor</CardCategory>
+        </Link>
 
       </article>
-
-      <div className="card-todosP">
-        <div className="cardP">
-          {
-            products.map((item)=><CardProductos img={item.img} nombre={item.name}/>)
-          }
-        </div>
-
-      </div>
-
 
 
     </div>
