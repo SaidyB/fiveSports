@@ -20,7 +20,7 @@
     },
     {
       "id": 3,
-      "name": "Puma",
+      "name": "Puma x",
       "price": 19000,
       "stock": 3,
       "description": "Las clasicas zapatillas que van para cualquier momento del dia",
@@ -59,7 +59,7 @@
       "name": "Balon de baloncesto Spalding",
       "price": 250500,
       "stock": 9,
-      "description": "CONSTRUIDO PARA EL RENDIMIENTO",
+      "description": "Construido para el rendimiento",
       "category": "balones",
       "img": "https://m.media-amazon.com/images/I/91pLiy70AZS._AC_SL1500_.jpg"
     },
@@ -77,7 +77,7 @@
       "name": "Maquina de Remo Olimpico",
       "price": 4500000,
       "stock": 9,
-      "description": "Zapatillas de ultima generacion para el deporte",
+      "description": "Agarres de caucho, justo para el agarre, fibra anti-deslizante",
       "category": "gimnasio",
       "img": "https://www.alkosto.com/medias/7707118762549-001-1400Wx1400H?context=bWFzdGVyfGltYWdlc3w0MTc1OHxpbWFnZS93ZWJwfGFEUXlMMmcwWmk4eE5ETTFOakU0TVRRNE16VTFNQzgzTnpBM01URTROell5TlRRNVh6QXdNVjh4TkRBd1YzZ3hOREF3U0F8ZmUxMGFhMmQwNjQ5NjVjMmQ4MGFhNzE0Zjc3YmIxZmI0NGVkNjdjYzg4NmY3OTVmYWRlYWEzYTgzMzhiNWQwNg"
     },
