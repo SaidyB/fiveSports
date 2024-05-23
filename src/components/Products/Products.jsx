@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { routes } from "../utils/routes";
 import Button from '../Button';
 
-
 // Función para mezclar los elementos de un array
 const shuffleArray = (array) => {
   let shuffledArray = array.slice(); // Copia del array original
@@ -23,43 +22,34 @@ const Products = () => {
 
   // Mezclar productos aleatoriamente
   const shuffledProducts = shuffleArray(products);
-  const firstRow = shuffledProducts.slice(0, 4);
-  const secondRow = shuffledProducts.slice(4, 8);
-
+  const firstColumn = shuffledProducts.slice(0, 5);
+  const secondColumn = shuffledProducts.slice(5, 10);
 
   return (
-    <div
-      style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
-    >
-      <div className="cardProducts">
-        {firstRow.map((elemento) => (
+    <div className="cardProductsContainer">
+      <div className="cardProductsColumn">
+        {firstColumn.map((elemento) => (
           <div key={elemento.id} className="producto">
             <img src={elemento.img} alt={elemento.name} />
             <div className="texto mb-2">
               <p>{elemento.name}</p>
             </div>
             <Link to={`${routes.detalles}/${elemento.id}`}><Button>
-              
               Ver Detalle
-          </Button></Link>
-            
-
-            
+            </Button></Link>
           </div>
         ))}
       </div>
-      <div className="cardProducts">
-        {secondRow.map((elemento) => (
+      <div className="cardProductsColumn">
+        {secondColumn.map((elemento) => (
           <div key={elemento.id} className="producto">
             <img src={elemento.img} alt={elemento.name} />
             <div className="texto mb-2">
               <p>{elemento.name}</p>
             </div>
             <Link to={`${routes.detalles}/${elemento.id}`}><Button>
-              
               Ver Detalle
-          </Button></Link>
-
+            </Button></Link>
           </div>
         ))}
       </div>

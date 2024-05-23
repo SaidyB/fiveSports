@@ -103,8 +103,55 @@ h2 {
   margin-bottom: 1rem; /* Espaciado entre tarjetas */
 }
   /* Estilos de CardProducts */
+  /* Estilos para .cardProductsColumn */
+  .cardProductsColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%; /* Ajustar a 100% para móviles */
+  }
+  
+  /* Asegurar que el contenedor principal de las columnas ocupe toda la altura disponible */
+  .cardProductsContainer {
+    display: flex;
+    flex-direction: column; /* Cambiar a columna para móviles */
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+  }
+  
+  .producto {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.45);
+    padding-bottom: 1%;
+  }
+  
+  .producto img {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+  }
+  
+  /* Media Queries para Tablets y Desktop */
+  @media (min-width: 768px) {
+    .cardProductsColumn {
+      width: 45%;
+    }
+    
+    .producto {
+      width: 80%;
+    }
+  }
 
-  .cardProducts{
+
+  /* .cardProducts{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -113,26 +160,9 @@ h2 {
     margin-top: 10px;
     width: 90%;
 
-  }
+  } */
 
-  .producto{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 80%;
-    /* border: 1px solid yellow; */
-    box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.45);
-    padding-bottom: 1%;
-    
-  }
-
-  .producto img{
-    display: flex;
-    justify-content: center;
-    width: 80%;
-    height: 80%;
-    /* border: 1px solid blue; */
-  }
+  
   
 
 /* Media Queries para Tablets y Desktop */
@@ -180,19 +210,18 @@ h2 {
 
   /* Estilos de CardProducts */
 
-  .cardProducts{
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
+  .cardProductsContainer {
+    flex-direction: row; /* Cambiar a fila para pantallas más grandes */
+    justify-content: space-around;
+    align-items: flex-start;
   }
 
-  .producto{
-    width: 48%;
-    /* border: 1px solid yellow; */
-    margin-bottom: 1rem;
-    box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.45);
-    
+  .cardProductsColumn {
+    width: 45%; /* Ajustar a 45% para pantallas más grandes */
+  }
+
+  .producto {
+    width: 80%;
   }
   
   /* Estilos todos los productos */
