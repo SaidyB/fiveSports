@@ -1,5 +1,6 @@
-import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 export const ContextGlobal = createContext();
 
@@ -16,31 +17,39 @@ const objectReducer = (state, action) => {
         ...state,
         darkMode: newDarkMode,
       };
-      default:
-        return state;
-    case 'SET_PRODUCTS':
+    case "SET_PRODUCTS":
       return {
         ...state,
         products: action.payload,
       };
+    default:
+      return state;
   }
 };
 
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(objectReducer, initialState);
 
-  useEffect(()=>{
-    axios('/src/db/listOfProducts.JSON')
-    .then(res => dispatch({type: 'SET_PRODUCTS', payload: res.data.products}))
-  },[])
+  useEffect(() => {
+    const productosRef = collection(db, "products");
+    getDocs(productosRef)
+      .then((resp) => {
+        const products = resp.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        dispatch({ type: "SET_PRODUCTS", payload: products });
+      })
+      .catch((error) => {
+        console.error("Error fetching products: ", error);
+      });
+  }, []);
 
-  let data = {state, dispatch}
+  let data = { state, dispatch };
 
-  return(
-    <ContextGlobal.Provider value={data}>
-        {children}
-    </ContextGlobal.Provider>
-  )
+  return (
+    <ContextGlobal.Provider value={data}>{children}</ContextGlobal.Provider>
+  );
 };
 
 export const useGlobalReduceState = () => useContext(ContextGlobal);
