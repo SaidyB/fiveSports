@@ -6,7 +6,7 @@ import { routes } from "./components/utils/routes";
 import Sign from "./components/Sign";
 import Login from "./components/Login";
 import ProductDetail from "./components/Details/ProductDetail";
-import Footer from "./components/footer/Footer";
+import Footer from "./components/Footer/Footer";
 
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import Products from "./components/Products/Products";

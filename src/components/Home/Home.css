@@ -182,16 +182,19 @@ h2 {
 
   .cardProducts{
     flex-direction: row;
-    align-items: normal;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
   }
 
   .producto{
-    width: 24.5%;
+    width: 48%;
     /* border: 1px solid yellow; */
+    margin-bottom: 1rem;
     box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.45);
     
   }
+  
   /* Estilos todos los productos */
   .card-todosP {
     width: 90%;
