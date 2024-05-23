@@ -3,5 +3,6 @@ export const routes={
     inicioSesion: '/Login',
     registrarse: '/Sign',
     detalles: '/ProductDetail',
-    admin: '/Admin'
+    admin: '/Admin',
+    verTodos: '/AllProducts'
 }

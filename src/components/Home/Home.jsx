@@ -35,13 +35,8 @@ const Home = () => {
         <CardCategory img={'/public/img/Categorias/gimnasio.png'}>Gimnasio</CardCategory>
         <CardCategory img={'/public/img/Categorias/deporte.png'}>Deportes</CardCategory>
         <CardCategory img={'/public/img/Categorias/outdoor.png'}>Outdoor</CardCategory>
-        <CardCategory img={'/public/img/Categorias/ciclismo.png'}>Ciclismo</CardCategory>
 
       </article>
-
-      <div className='titulo'>
-        <h2 className='font-bold text-2xl'>Todos los productos</h2>
-      </div>
 
       <div className="card-todosP">
         <div className="cardP">
