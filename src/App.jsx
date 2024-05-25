@@ -10,6 +10,8 @@ import CreateProduct from "./components/CreateProduct/CreateProduct";
 import AllProducts from "./components/verTodos/AllProducts";
 import VerTodos from "./components/verTodos/VerTodos";
 import VerCategoria from "./components/verTodos/VerCategoria";
+import UsuarioRegistrado from "./components/Profile/UsuarioRegistrado";
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
           <Route path={`${routes.detalles}/:id`} element={<ProductDetail />} />
           <Route path={routes.admin} element={<CreateProduct />} />
           <Route path={`${routes.categoria}/:category`} element={<VerCategoria/>} />
+          <Route path={routes.Profile} element={<UsuarioRegistrado/>} />
         </Routes>
         <Footer />
       </div>

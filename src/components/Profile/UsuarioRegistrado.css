@@ -1,0 +1,42 @@
+.contenedorPadre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    background: #f5f5f5;
+    margin-top: 200px;
+}
+
+
+.perfil-container {
+    margin-top: 3rem;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .perfil-titulo {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .perfil-info {
+    margin-top: 20px;
+  }
+  
+  .campo-info {
+    margin-bottom: 10px;
+  }
+  
+  .campo-titulo {
+    font-weight: bold;
+  }
+  
+  .campo-valor {
+    margin-left: 10px;
+  }
+  
