@@ -5,5 +5,6 @@ export const routes={
     detalles: '/ProductDetail',
     admin: '/Admin',
     verTodos: '/VerTodo',
-    categoria: '/categoria'
+    categoria: '/categoria',
+    Profile: '/perfil'
 }

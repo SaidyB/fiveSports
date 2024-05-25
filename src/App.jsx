@@ -10,22 +10,28 @@ import CreateProduct from "./components/CreateProduct/CreateProduct";
 import AllProducts from "./components/verTodos/AllProducts";
 import VerTodos from "./components/verTodos/VerTodos";
 import VerCategoria from "./components/verTodos/VerCategoria";
+import UsuarioRegistrado from "./components/Profile/UsuarioRegistrado";
+import { AuthProvider } from "./components/utils/AuthContext";
 
 function App() {
   return (
     <>
       <div className="bg-fondo min-h-screen font-poppins font-semibold ">
-        <Nav />
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path={routes.verTodos} element={<VerTodos/>}/>
-          <Route path={routes.registrarse} element={<Sign />} />
-          <Route path={routes.inicioSesion} element={<Login />} />
-          <Route path={`${routes.detalles}/:id`} element={<ProductDetail />} />
-          <Route path={routes.admin} element={<CreateProduct />} />
-          <Route path={`${routes.categoria}/:category`} element={<VerCategoria/>} />
-        </Routes>
-        <Footer />
+        <AuthProvider>
+          <Nav />
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path={routes.verTodos} element={<VerTodos/>}/>
+            <Route path={routes.registrarse} element={<Sign />} />
+            <Route path={routes.inicioSesion} element={<Login />} />
+            <Route path={`${routes.detalles}/:id`} element={<ProductDetail />} />
+            <Route path={routes.admin} element={<CreateProduct />} />
+            <Route path={`${routes.categoria}/:category`} element={<VerCategoria/>} />
+            <Route path={routes.Profile} element={<UsuarioRegistrado/>}/>
+          </Routes>
+          <Footer />
+        </AuthProvider>
+        
       </div>
     </>
   );
