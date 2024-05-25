@@ -25,3 +25,4 @@ const UsuarioRegistrado = () => {
 };
 
 export default UsuarioRegistrado;
+

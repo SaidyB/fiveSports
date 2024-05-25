@@ -10,26 +10,49 @@ import {
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import "./Sign.css"; // Importa el archivo de CSS
+import { useAuthContext } from "../utils/AuthContext";
+import { useNavigate } from "react-router-dom";
+import {routes} from '../utils/routes'
 
 const Sign = () => {
-  const [form, setForm] = useState({
+
+  const [user, setUser] = useState({
     name: "",
+    lastName:"",
     email: "",
     password: "",
   });
+  console.log(user)
+
+  const { signup } = useAuthContext();
+  const navigate = useNavigate();
+  const [error, setError]= useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({
-      ...form,
+    setUser({
+      ...user,
       [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para manejar el registro del usuario
-    console.log("Register form data:", form);
+    setError('');
+    try{
+      await signup(user.email, user.password)
+      navigate(routes.Profile)
+    }catch(error){
+      console.log(error.code)
+      switch(error.code){
+        case 'auth/invalid-email':
+          return setError('Ingrese un email válido')
+        case 'auth/weak-password':
+          return setError('Ingrese una contraseña mayor a 6 digitos')
+        case 'auth/email-already-in-use':
+          return setError('Este correo ya esta en uso')
+      }
+    }
   };
 
   return (
@@ -42,49 +65,65 @@ const Sign = () => {
           <Typography variant="h5" gutterBottom>
             Register
           </Typography>
-          <form onSubmit={handleSubmit} className="form">
-            <TextField
-              label="Name"
-              name="name"
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              value={form.name}
-              onChange={handleChange}
-            />
-            <TextField
-              label="Email"
-              name="email"
-              type="email"
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              value={form.email}
-              onChange={handleChange}
-            />
-            <TextField
-              label="Password"
-              name="password"
-              type="password"
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              value={form.password}
-              onChange={handleChange}
-            />
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              className="submit-button"
-            >
-              Register
-            </Button>
-          </form>
+          <div>
+            {error && <p>{error}</p>}
+            <form onSubmit={handleSubmit} className="form">
+              <TextField
+                label="Name"
+                name="name"
+                type="text"
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                value={user.name}
+                onChange={handleChange}
+              />
+              <TextField
+                label="Last name"
+                name="lastName"
+                type="text"
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                value={user.lastName}
+                onChange={handleChange}
+              />
+              <TextField
+                label="Email"
+                name="email"
+                type="email"
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                value={user.email}
+                onChange={handleChange}
+              />
+              <TextField
+                label="Password"
+                name="password"
+                type="password"
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                value={user.password}
+                onChange={handleChange}
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                className="submit-button"
+              >
+                Register
+              </Button>
+            </form>
+          </div>
+          
         </Box>
       </Paper>
     </Container>

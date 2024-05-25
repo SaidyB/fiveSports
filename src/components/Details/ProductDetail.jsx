@@ -23,7 +23,7 @@ const ProductDetail = () => {
       <div className="detail-card-grid">
         <div className="detail-card">
           <h1>{product.name}</h1>
-          <p>{product.description}</p>
+          <p className="text-justify">{product.description}</p>
           <img src={product.img} alt={product.name} />
           <p>Precio: {product.price}</p>
           <p>Stock: {product.stock}</p>
