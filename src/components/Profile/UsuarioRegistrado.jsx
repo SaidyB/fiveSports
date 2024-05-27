@@ -14,6 +14,10 @@ const UsuarioRegistrado = () => {
           <span className="campo-valor">Nombre del Usuario</span>
         </div>
         <div className="campo-info">
+          <span className="campo-titulo">Apellido:</span>
+          <span className="campo-valor">Apellido del Usuario</span>
+        </div>
+        <div className="campo-info">
           <span className="campo-titulo">Correo electrónico:</span>
           <span className="campo-valor">usuario@example.com</span>
         </div>
