@@ -21,6 +21,10 @@ const UsuarioRegistrado = () => {
           <span className="campo-titulo">Correo electrónico:</span>
           <span className="campo-valor">usuario@example.com</span>
         </div>
+        <div className="campo-info">
+          <span className="campo-titulo">Contraseña:</span>
+          <span className="campo-valor">*********</span>
+        </div>
         {/* Puedes agregar más campos de información del usuario según tus necesidades */}
       </div>
     </div>
