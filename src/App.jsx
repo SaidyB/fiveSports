@@ -11,6 +11,7 @@ import AllProducts from "./components/verTodos/AllProducts";
 import VerTodos from "./components/verTodos/VerTodos";
 import VerCategoria from "./components/verTodos/VerCategoria";
 import UsuarioRegistrado from "./components/Profile/UsuarioRegistrado";
+
 import { AuthProvider } from "./components/utils/AuthContext";
 import { ProtectedRoute } from "./components/utils/ProtectedRoute";
 
