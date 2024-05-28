@@ -39,7 +39,10 @@ const Login = () => {
       await login(user.email, user.password);
       navigate(routes.Profile);
     } catch(error){
-      setError(error.message);
+        switch(error.code){
+          case 'auth/invalid-credential':
+            return setError('Verifique sus datos')
+        }
     }
     
     // console.log("Login form data:", user);
