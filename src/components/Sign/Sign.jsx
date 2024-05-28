@@ -24,7 +24,7 @@ const Sign = () => {
   });
   console.log(user)
 
-  const { signup } = useAuthContext();
+  const { signup,actualizarNombre } = useAuthContext();
   const navigate = useNavigate();
   const [error, setError]= useState();
 
@@ -41,6 +41,7 @@ const Sign = () => {
     setError('');
     try{
       await signup(user.email, user.password)
+      await actualizarNombre(`${user.name} ${user.lastName}`)
       navigate(routes.Profile)
     }catch(error){
       console.log(error.code)

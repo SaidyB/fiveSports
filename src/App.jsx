@@ -13,6 +13,7 @@ import VerCategoria from "./components/verTodos/VerCategoria";
 import UsuarioRegistrado from "./components/Profile/UsuarioRegistrado";
 
 import { AuthProvider } from "./components/utils/AuthContext";
+import { ProtectedRoute } from "./components/utils/ProtectedRoute";
 
 function App() {
   return (
@@ -28,10 +29,15 @@ function App() {
             <Route path={`${routes.detalles}/:id`} element={<ProductDetail />} />
             <Route path={routes.admin} element={<CreateProduct />} />
             <Route path={`${routes.categoria}/:category`} element={<VerCategoria/>} />
-            <Route path={routes.Profile} element={<UsuarioRegistrado/>}/>
+            <Route path={routes.Profile} element={
+              <ProtectedRoute>
+                <UsuarioRegistrado/>
+              </ProtectedRoute>
+            }/>
           </Routes>
           <Footer />
         </AuthProvider>
+        
       </div>
     </>
   );
