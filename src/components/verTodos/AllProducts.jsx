@@ -7,7 +7,7 @@ const AllProducts = ({products, titulo}) => {
 
   return (
    <div className='container-main'>
-    <h2 className='title'>{titulo}</h2>
+    <h3 className='title'>{titulo}</h3>
     <div className='card-todosP'>
         <div className='cardP'>
             {
