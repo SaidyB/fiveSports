@@ -1,4 +1,3 @@
-import { Profiler } from "react";
 
 export const routes={
     home: '/',
@@ -7,5 +6,7 @@ export const routes={
     detalles: '/ProductDetail',
     admin: '/Admin',
     verTodos: '/VerTodo',
+    categoria: '/categoria',
     Profile: '/perfil',
 }
+
