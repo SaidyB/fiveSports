@@ -13,6 +13,8 @@ const Nav = () => {
   const { user, loading } = useAuthContext();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  if (loading) return <h1>loading</h1>;
+
   return (
     <nav className={`navbar ${state.darkMode && 'dark'}`}>
       <div className="shadow-md w-full fixed top-0 left-0">
@@ -48,7 +50,7 @@ const Nav = () => {
           </div>
 
           <div className={`md:flex items-center ${menuOpen ? 'block' : 'hidden'} w-full md:w-auto mobile-menu`}>
-            {user || loading ? (
+            {user? (
               <div className="flex flex-col md:flex-row md:items-center ml-0 md:ml-8 w-full md:w-auto">
                 <Link to={routes.verTodos} className="my-2 md:my-0 mr-9 text-register">Ver todos</Link>
                 <div className="my-2 md:my-0">
