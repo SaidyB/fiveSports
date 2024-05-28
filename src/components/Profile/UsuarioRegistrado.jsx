@@ -34,7 +34,9 @@ const UsuarioRegistrado = () => {
       <Card className="perfil-tarjeta">
         <CardHeader
           avatar={
-            <Avatar className="avatar">{getInitials(user.displayName)}</Avatar>
+            <Avatar className="avatar" sx={{ width: 80, height: 80 }}>
+              {getInitials(user.displayName)}
+            </Avatar>
           }
           title={
             <Typography variant="h5" className="perfil-titulo">
