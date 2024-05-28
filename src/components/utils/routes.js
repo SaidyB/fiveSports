@@ -1,4 +1,3 @@
-import { Profiler } from "react";
 
 export const routes={
     home: '/',
@@ -10,3 +9,4 @@ export const routes={
     categoria: '/categoria',
     Profile: '/perfil',
 }
+
