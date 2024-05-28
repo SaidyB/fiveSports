@@ -1,8 +1,20 @@
-.navbar{
+.navbar {
     z-index: 1;
 }
 
-.navbar .dark{
+.navbar .dark {
     background-color: black;
 }
 
+@media (max-width: 767px) {
+    .mobile-menu {
+        width: 80%; /* Ajusta este valor según lo que consideres un ancho adecuado para un menú desplegable */
+        max-width: 300px; /* Puedes establecer un máximo ancho si lo prefieres */
+        position: absolute;
+        right: 10px;
+        background-color: white; /* Asegúrate de que el menú tenga un fondo visible */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 1rem;
+    }
+}

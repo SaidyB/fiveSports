@@ -13,6 +13,7 @@ import "./Login.css"; // Importa el archivo de CSS
 import { useAuthContext } from "../utils/AuthContext";
 import { useNavigate } from "react-router-dom";
 import {routes} from '../utils/routes'
+import { Alert } from "../utils/Alert";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -59,7 +60,7 @@ const Login = () => {
             Login
           </Typography>
           <div>
-            {error && <p>{error}</p>}
+            {error && <Alert message={error}/>}
             <form onSubmit={handleSubmit} className="form">
               <TextField
                 label="Email"
