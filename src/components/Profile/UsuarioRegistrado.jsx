@@ -21,15 +21,22 @@ const UsuarioRegistrado = () => {
       <h1 className="perfil-titulo">Perfil de Usuario</h1>
       <div className="perfil-info">
         <div className="campo-info">
-          <span className="campo-titulo">{user.displayName}:</span>
-          <span className="campo-valor">{user.email}</span>
+          <span className="campo-titulo">Nombre:</span>
+          <span className="campo-valor">Nombre del Usuario</span>
+        </div>
+        <div className="campo-info">
+          <span className="campo-titulo">Apellido:</span>
+          <span className="campo-valor">Apellido del Usuario</span>
         </div>
         <div className="campo-info">
           <span className="campo-titulo">Correo electrónico:</span>
           <span className="campo-valor">usuario@example.com</span>
         </div>
-          <Button onClick={handleLogout}>Cerrar sesión</Button>
-        
+        <div className="campo-info">
+          <span className="campo-titulo">Contraseña:</span>
+          <span className="campo-valor">*********</span>
+        </div>
+        {/* Puedes agregar más campos de información del usuario según tus necesidades */}
       </div>
     </div>
     </div>
