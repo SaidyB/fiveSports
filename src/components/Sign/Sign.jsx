@@ -38,14 +38,16 @@ const Sign = () => {
   };
 
   //VALIDACIONES
-  const validateText= (text)=>{
-    const sinEspacios= text.trim();
-    if (sinEspacios.length>=2){
+  const validateText = (text) => {
+    const sinEspacios = text.trim();
+    const sinNumeros = /^[a-zA-Z\s]+$/.test(sinEspacios);
+  
+    if (sinEspacios.length >= 2 && sinNumeros) {
       return true;
-    } else{
+    } else {
       return false;
     }
-  }
+  };
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const validateUserEmail= (userEmail)=>{
