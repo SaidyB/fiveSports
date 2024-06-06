@@ -11,7 +11,9 @@
   margin-top: 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .detail-card {
@@ -56,4 +58,94 @@
 
 .black-button {
   margin-top: 20px;
+}
+
+.calendar-card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  max-width: 800px; /* Ajusta el ancho máximo */
+  width: 100%; /* Ajusta el ancho en pantallas pequeñas */
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.calendar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.calendar-card h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+  margin: 10px 0; /* Añadir margen al h2 */
+}
+
+.dual-month-calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.react-calendar {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .detail-card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detail-container {
+    justify-content: flex-start; /* Alinear al inicio */
+    margin-top: 5rem; /* Ajustar el margen superior */
+  }
+
+  .dual-month-calendar {
+    flex-direction: column; /* Cambiar la dirección a columna */
+    align-items: center; /* Centrar horizontalmente */
+  }
+
+  .detail-card,
+  .calendar-card {
+    max-width: calc(100% - 40px); 
+    margin: 10px;
+  }
+
+  .react-calendar {
+    max-width: calc(100% - 40px); /* Resta el espacio de los márgenes */
+    margin: 10px; /* Reduce el margen */
+  }
+}
+
+/* Ajustar los estilos del calendario para que se vea centrado y prolijo */
+.dual-month-calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.react-calendar {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
