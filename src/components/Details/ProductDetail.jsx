@@ -34,6 +34,7 @@ const ProductDetail = () => {
         <div className="calendar-card">
           <h2>Selecciona Fechas</h2>
           <DualMonthCalendar />
+          <button className="ver-reserva-button">Ver Reserva</button>
         </div>
       </div>
     </div>
