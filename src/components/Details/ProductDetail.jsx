@@ -3,6 +3,7 @@ import "./ProductosCard.css";
 import { ContextGlobal } from "../utils/GlobalContextReducer";
 import { useParams } from "react-router-dom";
 import BlackButton from "./BlackButton";
+import DualMonthCalendar from "../Calendar/DualMonthCalendar";
 
 const ProductDetail = () => {
   const { state } = useContext(ContextGlobal);
@@ -29,6 +30,10 @@ const ProductDetail = () => {
           <p>Stock: {product.stock}</p>
           <p>Categoría: {product.category}</p>
           <BlackButton />
+          </div>
+        <div className="calendar-card">
+          <h2>Selecciona Fechas</h2>
+          <DualMonthCalendar />
         </div>
       </div>
     </div>
