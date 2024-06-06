@@ -30,17 +30,6 @@ const Nav = () => {
                 <img className="w-15 h-16 logo1" src="/public/img/logo.png" />
               )}
             </NavLink>
-            <form className="flex ml-0">
-              <input
-                type="text"
-                className="border border-gray-100 shadow-inner rounded"
-                style={{ width: '100%' }}
-                placeholder="Find the best product here"
-              />
-              <button type="submit" className="border-xxl border-gray-500 pl-2">
-                <i className="fa-solid fa-magnifying-glass"></i>
-              </button>
-            </form>
             <button
               className="md:hidden text-gray-800 focus:outline-none"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -50,7 +39,7 @@ const Nav = () => {
           </div>
 
           <div className={`md:flex items-center ${menuOpen ? 'block' : 'hidden'} w-full md:w-auto mobile-menu`}>
-            {user? (
+            {user ? (
               <div className="flex flex-col md:flex-row md:items-center ml-0 md:ml-8 w-full md:w-auto">
                 <Link to={routes.verTodos} className="my-2 md:my-0 mr-9 text-register">Ver todos</Link>
                 <div className="my-2 md:my-0">
