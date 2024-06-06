@@ -1,0 +1,38 @@
+.dual-month-calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .react-calendar {
+    max-width: 100%; /* Ajusta el ancho máximo */
+    width: auto;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .react-calendar__tile {
+    font-size: 14px; /* Tamaño de fuente */
+    width: 35px; /* Ajusta el ancho de las celdas */
+    height: 35px; /* Ajusta la altura de las celdas */
+    color: black;
+  }
+  
+  .react-calendar__tile--active {
+    background: #007bff; /* Color de fondo para las fechas activas */
+    color: #fff; /* Color de texto para las fechas activas */
+  }
+  
+  .react-calendar__tile--disabled {
+    color: #ccc; /* Color de texto para las fechas deshabilitadas */
+    pointer-events: none; /* Deshabilita la interacción con las fechas deshabilitadas */
+  }
+  
+  @media (max-width: 768px) {
+    .react-calendar {
+      max-width: 100%;
+    }
+  }
+  
