@@ -27,7 +27,6 @@ const ProductDetail = () => {
           <p className="text-justify">{product.description}</p>
           <img src={product.img} alt={product.name} />
           <p>Precio: {product.price}</p>
-          <p>Stock: {product.stock}</p>
           <p>Categoría: {product.category}</p>
           <BlackButton />
           </div>
