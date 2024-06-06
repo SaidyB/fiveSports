@@ -14,6 +14,7 @@ import UsuarioRegistrado from "./components/Profile/UsuarioRegistrado";
 
 import { AuthProvider } from "./components/utils/AuthContext";
 import { ProtectedRoute } from "./components/utils/ProtectedRoute";
+import ReservationDates from "./components/VerReserva/ReservationDates";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
                 <UsuarioRegistrado/>
               </ProtectedRoute>
             }/>
+            <Route path={routes.VerReserva} element={<ReservationDates />} />
           </Routes>
           <Footer />
         </AuthProvider>

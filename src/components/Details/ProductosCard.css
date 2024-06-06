@@ -149,3 +149,19 @@
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
+
+.ver-reserva-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #667eea; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.ver-reserva-button:hover {
+  background-color: #5a67d8; /* Color de fondo al pasar el cursor */
+}
