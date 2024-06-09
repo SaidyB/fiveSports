@@ -6,6 +6,8 @@
   bottom: 0;
   left: 0;
   height: 20px;
+  z-index: 2;
+  
 }
 
 .footer-content {
