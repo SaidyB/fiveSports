@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import CardCategory from "./CardCategory";
 import Products from "../Products/Products";
@@ -22,6 +22,7 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("Categoría");
   const [textColor, setTextColor] = useState("rgba(0, 0, 0, 0.26)"); 
   const [mostrarFiltrados, setMostrarFiltrados]= useState(false);
+  const [productsFiltered, setProductsFiltered]=useState([])
 
   const dateFormat = 'DD-MM-YYYY';
   console.log(fromDate)
@@ -76,9 +77,13 @@ const Home = () => {
       );
       console.log(filteredProductsByCategory)
       setMostrarFiltrados(true)
-      setProductsAvailable(filteredProductsByCategory)
+      setProductsFiltered(filteredProductsByCategory)
     }
   }
+
+  useEffect(()=>{
+
+  },[])
 
   return (
     <div className='home'>
@@ -116,7 +121,7 @@ const Home = () => {
         </div>
       </div>
       {mostrarFiltrados&&(
-        <AllProducts products={productsAvailable} titulo={`Productos disponibles de ${selectedCategory}`}/>
+        <AllProducts products={productsFiltered} titulo={`Productos disponibles de ${selectedCategory}`}/>
       )}
       <div className='container_home'>
         <div className='img1'>

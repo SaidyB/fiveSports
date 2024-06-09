@@ -14,7 +14,6 @@ import UsuarioRegistrado from "./components/Profile/UsuarioRegistrado";
 
 import { AuthProvider } from "./components/utils/AuthContext";
 import { ProtectedRoute } from "./components/utils/ProtectedRoute";
-import Bookings from "./components/bookings/Bookings";
 
 function App() {
   return (
@@ -29,7 +28,6 @@ function App() {
             <Route path={routes.inicioSesion} element={<Login />} />
             <Route path={`${routes.detalles}/:id`} element={<ProductDetail />} />
             <Route path={routes.admin} element={<CreateProduct />} />
-            <Route path="/bookings" element={<Bookings/>} />
             <Route path={`${routes.categoria}/:category`} element={<VerCategoria/>} />
             <Route path={routes.Profile} element={
               <ProtectedRoute>
