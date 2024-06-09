@@ -8,5 +8,6 @@ export const routes={
     verTodos: '/VerTodo',
     categoria: '/categoria',
     Profile: '/perfil',
+    VerReserva: '/Reservation',
 }
 
