@@ -1,7 +1,7 @@
 /* Estilos Base (Mobile-First) */
 .home {
-  padding-top: 4rem; /* Ajustar según la altura del header */
-  margin-top: 2rem; /* Ajustado para móvil */
+  padding-top: 4rem;
+  margin-top: 2rem;
   width: 100%;
   height: auto;
   display: flex;
@@ -12,13 +12,91 @@
   align-items: center;
 }
 
+/* Estilos RESERVATION CALENDAR */
+
+.container_reservation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  background-color: #0b79cd;
+  height: 100px;
+  margin: 2rem;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.container_reservation .title {
+  font-weight: bold;
+  font-size: x-large;
+  color: #f0f0f0;
+}
+
+.container_calendar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1rem;
+  width: 70%;
+  height: 30%;
+}
+
+.textCategory {
+  margin-right: 0.5rem;
+  position: relative;
+}
+
+.Button {
+  width: 100%;
+  height: 100%;
+  padding: 0 5rem 0 1rem;
+  color: rgba(0, 0, 0, 0.26);
+  font-weight: 620;
+}
+
+.menu {
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.menu h4 {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.menu h4:hover {
+  background-color: #bdc3fb;
+}
+
+.textBuscar {
+  margin-left: 0.5rem;
+}
+
+.textBuscar .btnBuscar {
+  width: 100%;
+  height: 100%;
+  padding: 0 2rem;
+  color: white;
+  font-weight: bold;
+}
+
+/* Estilos HOME */
+
 .container_home {
   display: flex;
-  flex-direction: column; /* Cambiado a columna para móvil */
+  flex-direction: column;
   justify-content: center;
   width: 90%;
   height: auto;
-  margin: 1.5rem auto; /* Ajustado para móvil */
+  margin: 1.5rem auto;
   border-radius: 10px;
   background-color: #f0f0f0;
 }
@@ -27,8 +105,8 @@
 .img2 {
   display: flex;
   align-items: center;
-  justify-content: center; /* Alineación centrada */
-  width: 100%; /* Ajustado para móvil */
+  justify-content: center;
+  width: 100%;
 }
 
 .img1 img,
@@ -38,14 +116,14 @@
 }
 
 .img1 img {
-  height: 5rem; /* Ajustado para móvil */
-  margin-bottom: 1.5rem; /* Ajustado para móvil */
+  height: 5rem;
+  margin-bottom: 1.5rem;
 }
 
 .img2 img {
-  height: 10rem; /* Ajustado para móvil */
-  width: auto; /* Ajustado para móvil */
-  margin-top: 1rem; /* Ajustado para móvil */
+  height: 10rem;
+  width: auto;
+  margin-top: 1rem;
 }
 
 /* Estilos para .titulo */
@@ -54,7 +132,7 @@
   justify-content: center;
   align-items: center;
   width: 90%;
-  margin: 1rem auto; /* Ajustado para móvil */
+  margin: 1rem auto;
   position: relative;
 }
 
@@ -69,41 +147,39 @@
 
 .titulo::before {
   left: 0;
-  width: 25%; /* Ajustado para móvil */
+  width: 25%;
 }
 
 .titulo::after {
   right: 0;
-  width: 25%; /* Ajustado para móvil */
+  width: 25%;
 }
 
 h2 {
   background-color: white;
-  padding: 0 10px; /* Ajustado para móvil */
+  padding: 0 10px;
   z-index: 1;
 }
 
 /* Estilos para .sectionCategory */
 .sectionCategory {
-  margin-top: 1rem; /* Ajustado para móvil */
+  margin-top: 1rem;
   display: flex;
-  flex-direction: column; /* Cambiado a columna para móvil */
+  flex-direction: column;
   justify-content: center;
   width: 90%;
-  /* border: 1px solid palevioletred; */
-  /* background-color: #F0F0F0; */
   align-items: center;
 }
 
 .cardCategory {
   display: flex;
-  width: 100%; /* Ajustado para móvil */
+  width: 100%;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 1rem; /* Espaciado entre tarjetas */
+  margin-bottom: 1rem;
 }
+
 /* Estilos de CardProducts */
-/* Estilos para .cardProductsColumn */
 .cardProductsColumn {
   display: flex;
   flex-direction: column;
@@ -111,13 +187,12 @@ h2 {
   align-items: center;
   gap: 10px;
   margin-top: 10px;
-  width: 100%; /* Ajustar a 100% para móviles */
+  width: 100%;
 }
 
-/* Asegurar que el contenedor principal de las columnas ocupe toda la altura disponible */
 .cardProductsContainer {
   display: flex;
-  flex-direction: column; /* Cambiar a columna para móviles */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 90%;
@@ -152,14 +227,19 @@ h2 {
 
 @media (min-width: 768px) {
   .home {
-    padding-top: 0; /* Eliminar padding-top en pantallas más grandes */
+    padding-top: 0;
     margin-top: 6rem;
   }
 
+  .container_reservation {
+    height: 120px;
+    margin: 2rem auto;
+  }
+
   .container_home {
-    flex-direction: row; /* Cambiado a fila para pantallas más grandes */
+    flex-direction: row;
     height: 379px;
-    margin: 3rem auto 2rem auto;
+    margin: 0.2rem auto 2rem auto;
   }
 
   .img1 img {
@@ -174,40 +254,36 @@ h2 {
   }
 
   .sectionCategory {
-    flex-direction: row; /* Cambiado a fila para pantallas más grandes */
+    flex-direction: row;
     justify-content: space-between;
     margin-bottom: 2rem;
   }
 
   .cardCategory {
-    width: 33%; /* Ajustado para pantallas más grandes */
-    margin-bottom: 0; /* Eliminar espaciado entre tarjetas */
+    width: 33%;
+    margin-bottom: 0;
   }
 
   .titulo::before,
   .titulo::after {
-    width: 42%; /* Ajustado para pantallas más grandes */
+    width: 42%;
   }
 
   h2 {
-    padding: 0 20px; /* Ajustado para pantallas más grandes */
+    padding: 0 20px;
   }
 
-  /* Estilos de CardProducts */
-
   .cardProductsContainer {
-    flex-direction: row; /* Cambiar a fila para pantallas más grandes */
+    flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
   }
 
   .cardProductsColumn {
-    width: 45%; /* Ajustar a 45% para pantallas más grandes */
+    width: 45%;
   }
 
   .producto {
     width: 80%;
   }
-
-  
 }

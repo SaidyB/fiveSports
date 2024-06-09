@@ -18,7 +18,6 @@ const shuffleArray = (array) => {
 const Products = () => {
   const { state } = useGlobalReduceState();
   const { products } = state;
-  console.log(products)
 
   // Mezclar productos aleatoriamente
   const shuffledProducts = shuffleArray(products);
