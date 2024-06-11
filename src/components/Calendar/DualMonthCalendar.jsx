@@ -1,4 +1,3 @@
-// src/components/DualMonthCalendar.jsx
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -13,10 +12,8 @@ const DualMonthCalendar = () => {
 
   const tileDisabled = ({ date }) => {
     const today = new Date();
-    const endOfNextMonth = new Date(today.getFullYear(), today.getMonth() + 2, 0);
-    // Devuelve true para las fechas anteriores al día actual del mes actual
-    // o para las fechas posteriores al último día del mes siguiente al actual
-    return date < today || date > endOfNextMonth;
+    // Comparar solo la parte de la fecha sin la hora
+    return date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
   };
 
   return (
