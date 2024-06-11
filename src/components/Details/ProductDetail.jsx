@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./ProductosCard.css";
 import { ContextGlobal } from "../utils/GlobalContextReducer";
-import { useParams } from "react-router-dom";
 import BlackButton from "./BlackButton";
 import DualMonthCalendar from "../Calendar/DualMonthCalendar";
 
 const ProductDetail = () => {
   const { state } = useContext(ContextGlobal);
   const { products } = state;
-
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const productId = id;
 
   // Buscar el producto correspondiente
@@ -18,6 +19,10 @@ const ProductDetail = () => {
   if (!product) {
     return <div>Producto no encontrado</div>;
   }
+
+  const handleReservationClick = () => {
+    navigate("/reservation");
+  };
 
   return (
     <div className="detail-container">
@@ -29,11 +34,13 @@ const ProductDetail = () => {
           <p>Precio: {product.price}</p>
           <p>Categoría: {product.category}</p>
           <BlackButton />
-          </div>
+        </div>
         <div className="calendar-card">
           <h2>Selecciona Fechas</h2>
           <DualMonthCalendar />
-          <button className="ver-reserva-button">Ver Reserva</button>
+          <button className="ver-reserva-button" onClick={handleReservationClick}>
+            Iniciar Reserva
+          </button>
         </div>
       </div>
     </div>

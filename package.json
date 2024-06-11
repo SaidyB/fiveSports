@@ -29,6 +29,7 @@
     "react-calendar": "^5.0.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
+    "sweetalert2": "^11.11.1",
     "yup": "^1.4.0"
   },
   "devDependencies": {
