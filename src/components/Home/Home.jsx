@@ -26,6 +26,16 @@ const Home = () => {
   const [productsFiltered, setProductsFiltered] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const RangeDatePicker = (props) => {
+    const panelRender = (panelNode) => (
+      <StyleWrapperDatePicker>
+        {panelNode}
+      </StyleWrapperDatePicker>
+    );
+  
+    return <DatePicker.RangePicker  panelRender={panelRender} {...props} />;
+  };
+
   const dateFormat = "DD-MM-YYYY";
   console.log(fromDate);
   console.log(toDate);
@@ -153,19 +163,23 @@ const Home = () => {
         </div>
         <div className="search-bar ">
           <Search
+            className="inputBuscar"
             placeholder="Buscar productos"
             onChange={handleSearchChange}
             value={searchTerm}
             enterButton
-            style={{ width: 400, marginTop: 2 }}
           />
         </div>
       </div>
       {mostrarFiltrados && (
-        <AllProducts
+        <div className="container-search">
+          <AllProducts
           products={productsFiltered}
           titulo={`Resultados de búsqueda`}
+          principal={true}
         />
+        </div> 
+        
       )}
       <div className="container_home">
         <div className="img1">

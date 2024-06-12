@@ -11,6 +11,17 @@
   flex-direction: column;
 }
 
+.container-main2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  margin-top: 0.2rem;
+  flex-direction: column;
+}
+
 .card-todosP {
     width: 90%;
     display: grid;
@@ -47,7 +58,7 @@
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.45);
     padding-bottom: 1rem;
   }
-  .container-main .title{
+  .container-main .title, .container-main2 .title{
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
     font-weight: bold;
