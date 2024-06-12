@@ -6,14 +6,12 @@ import BlackButton from "./BlackButton";
 import DualMonthCalendar from "../Calendar/DualMonthCalendar";
 
 const ProductDetail = () => {
-  const { state } = useContext(ContextGlobal);
+  const { state, dispatch } = useContext(ContextGlobal);
   const { products } = state;
   const { id } = useParams();
   const navigate = useNavigate();
 
   const productId = id;
-
-  // Buscar el producto correspondiente
   const product = products.find((item) => item.id === productId);
 
   if (!product) {
@@ -21,6 +19,7 @@ const ProductDetail = () => {
   }
 
   const handleReservationClick = () => {
+    dispatch({ type: 'SET_SELECTED_PRODUCT', payload: product });
     navigate("/reservation");
   };
 

@@ -1,13 +1,15 @@
-// ContextGlobal.jsx
 import { createContext, useContext, useReducer, useEffect } from "react";
-import { collection, getDocs, doc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import { useAuthContext } from "../utils/AuthContext"; // Importa el contexto de autenticación
 
 export const ContextGlobal = createContext();
 
 export const initialState = {
   darkMode: false,
   products: [],
+  selectedProduct: null,
+  user: null, // Añadir el usuario al estado global
 };
 
 const objectReducer = (state, action) => {
@@ -23,6 +25,16 @@ const objectReducer = (state, action) => {
         ...state,
         products: action.payload,
       };
+    case "SET_SELECTED_PRODUCT":
+      return {
+        ...state,
+        selectedProduct: action.payload,
+      };
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.payload,
+      };
     default:
       return state;
   }
@@ -30,6 +42,7 @@ const objectReducer = (state, action) => {
 
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(objectReducer, initialState);
+  const { user } = useAuthContext(); // Obtén el usuario del contexto de autenticación
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -39,7 +52,6 @@ export const ContextProvider = ({ children }) => {
         const products = resp.docs.map(async (doc) => {
           const productData = doc.data();
           const productId = doc.id;
-          // Obtener las reservas de este producto
           const bookingsRef = collection(db, "products", productId, "bookings");
           const bookingsSnapshot = await getDocs(bookingsRef);
           const bookingsData = bookingsSnapshot.docs.map((doc) => ({
@@ -49,7 +61,7 @@ export const ContextProvider = ({ children }) => {
           return {
             id: productId,
             ...productData,
-            bookings: bookingsData
+            bookings: bookingsData,
           };
         });
         const productsWithData = await Promise.all(products);
@@ -61,6 +73,12 @@ export const ContextProvider = ({ children }) => {
 
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      dispatch({ type: "SET_USER", payload: user });
+    }
+  }, [user]);
 
   let data = { state, dispatch };
 
