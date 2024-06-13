@@ -28,12 +28,10 @@ const Home = () => {
 
   const RangeDatePicker = (props) => {
     const panelRender = (panelNode) => (
-      <StyleWrapperDatePicker>
-        {panelNode}
-      </StyleWrapperDatePicker>
+      <StyleWrapperDatePicker>{panelNode}</StyleWrapperDatePicker>
     );
-  
-    return <DatePicker.RangePicker  panelRender={panelRender} {...props} />;
+
+    return <DatePicker.RangePicker panelRender={panelRender} {...props} />;
   };
 
   const dateFormat = "DD-MM-YYYY";
@@ -161,7 +159,14 @@ const Home = () => {
             </Button>
           </div>
         </div>
-        <div className="search-bar ">
+        <div className="search-bar">
+          {/* Añadido parágrafo descriptivo */}
+          <p
+            style={{ color: "white", marginRight: 15, marginTop: 5 }}
+            className="search-description"
+          >
+            Encuentra tu producto
+          </p>
           <Search
             className="inputBuscar"
             placeholder="Buscar productos"
@@ -174,12 +179,11 @@ const Home = () => {
       {mostrarFiltrados && (
         <div className="container-search">
           <AllProducts
-          products={productsFiltered}
-          titulo={`Resultados de búsqueda`}
-          principal={true}
-        />
-        </div> 
-        
+            products={productsFiltered}
+            titulo={`Resultados de búsqueda`}
+            principal={true}
+          />
+        </div>
       )}
       <div className="container_home">
         <div className="img1">

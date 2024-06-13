@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useAuthContext } from "../utils/AuthContext"; // Importa el contexto de autenticación
 
@@ -15,26 +15,15 @@ export const initialState = {
 const objectReducer = (state, action) => {
   switch (action.type) {
     case "CHANGE_MODE":
-      const newDarkMode = !state.darkMode;
-      return {
-        ...state,
-        darkMode: newDarkMode,
-      };
+      return { ...state, darkMode: !state.darkMode };
     case "SET_PRODUCTS":
-      return {
-        ...state,
-        products: action.payload,
-      };
+      return { ...state, products: action.payload };
     case "SET_SELECTED_PRODUCT":
-      return {
-        ...state,
-        selectedProduct: action.payload,
-      };
+      return { ...state, selectedProduct: action.payload };
     case "SET_USER":
-      return {
-        ...state,
-        user: action.payload,
-      };
+      return { ...state, user: action.payload };
+    case "CREATE_RESERVATION":
+      return { ...state, reservation: action.payload };
     default:
       return state;
   }
@@ -58,11 +47,7 @@ export const ContextProvider = ({ children }) => {
             id: doc.id,
             ...doc.data(),
           }));
-          return {
-            id: productId,
-            ...productData,
-            bookings: bookingsData,
-          };
+          return { id: productId, ...productData, bookings: bookingsData };
         });
         const productsWithData = await Promise.all(products);
         dispatch({ type: "SET_PRODUCTS", payload: productsWithData });
@@ -80,7 +65,33 @@ export const ContextProvider = ({ children }) => {
     }
   }, [user]);
 
-  let data = { state, dispatch };
+  const createReservation = async (product, selectedDates) => {
+    if (!selectedDates || selectedDates.length !== 2) {
+      throw new Error("No dates selected or incorrect date range");
+    }
+
+    const reservation = {
+      productId: product.id,
+      productName: product.name,
+      fromDate: selectedDates[0].toISOString(),
+      toDate: selectedDates[1].toISOString(),
+      createdAt: new Date().toISOString(),
+    };
+
+    try {
+      console.log("Reservation data to be sent: ", reservation);
+      // Enviar los datos de la reserva a Firestore
+      await addDoc(collection(db, "reservations"), reservation);
+      dispatch({ type: "SET_SELECTED_PRODUCT", payload: product });
+      dispatch({ type: "CREATE_RESERVATION", payload: reservation });
+      console.log("Reservation successfully created");
+    } catch (error) {
+      console.error("Error al crear la reserva:", error);
+      throw error;
+    }
+  };
+
+  let data = { state, dispatch, createReservation };
 
   return (
     <ContextGlobal.Provider value={data}>{children}</ContextGlobal.Provider>
