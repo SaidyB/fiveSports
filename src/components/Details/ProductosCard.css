@@ -1,10 +1,10 @@
 .detail-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Asegura que los elementos se alineen al inicio verticalmente */
+  align-items: center; /* Cambiado a center para centrar verticalmente */
   min-height: 100vh;
   background: #f5f5f5;
-  margin-top: 3rem;
+  margin-top: 5rem; /* Incrementa el margen superior para evitar superposición con el encabezado */
   padding: 10px;
 }
 
@@ -129,7 +129,7 @@
 
   .detail-container {
     justify-content: flex-start;
-    margin-top: 5rem;
+    margin-top: 6rem; /* Incrementa el margen superior para asegurar suficiente espacio */
   }
 
   .dual-month-calendar {
