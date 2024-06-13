@@ -1,7 +1,7 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import React, { createContext, useContext, useReducer, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
-import { useAuthContext } from "../utils/AuthContext"; // Importa el contexto de autenticación
+import { useAuthContext } from "../utils/AuthContext";
 
 export const ContextGlobal = createContext();
 
@@ -9,7 +9,9 @@ export const initialState = {
   darkMode: false,
   products: [],
   selectedProduct: null,
-  user: null, // Añadir el usuario al estado global
+  user: null,
+  checkIn: '',
+  checkOut: ''
 };
 
 const objectReducer = (state, action) => {
@@ -35,6 +37,16 @@ const objectReducer = (state, action) => {
         ...state,
         user: action.payload,
       };
+    case "SET_CHECKIN":
+      return {
+        ...state,
+        checkIn: action.payload,
+      };
+    case "SET_CHECKOUT":
+      return {
+        ...state,
+        checkOut: action.payload,
+      };
     default:
       return state;
   }
@@ -42,17 +54,17 @@ const objectReducer = (state, action) => {
 
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(objectReducer, initialState);
-  const { user } = useAuthContext(); // Obtén el usuario del contexto de autenticación
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productosRef = collection(db, "products");
+        const productosRef = collection(db, 'products');
         const resp = await getDocs(productosRef);
         const products = resp.docs.map(async (doc) => {
           const productData = doc.data();
           const productId = doc.id;
-          const bookingsRef = collection(db, "products", productId, "bookings");
+          const bookingsRef = collection(db, 'products', productId, 'bookings');
           const bookingsSnapshot = await getDocs(bookingsRef);
           const bookingsData = bookingsSnapshot.docs.map((doc) => ({
             id: doc.id,
@@ -65,9 +77,9 @@ export const ContextProvider = ({ children }) => {
           };
         });
         const productsWithData = await Promise.all(products);
-        dispatch({ type: "SET_PRODUCTS", payload: productsWithData });
+        dispatch({ type: 'SET_PRODUCTS', payload: productsWithData });
       } catch (error) {
-        console.error("Error fetching products: ", error);
+        console.error('Error fetching products: ', error);
       }
     };
 
@@ -76,7 +88,7 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      dispatch({ type: "SET_USER", payload: user });
+      dispatch({ type: 'SET_USER', payload: user });
     }
   }, [user]);
 
