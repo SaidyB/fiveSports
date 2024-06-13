@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./ProductosCard.css";
 import { ContextGlobal } from "../utils/GlobalContextReducer";
@@ -6,54 +6,58 @@ import BlackButton from "./BlackButton";
 import DualMonthCalendar from "../Calendar/DualMonthCalendar";
 
 const ProductDetail = () => {
-  const { state, createReservation } = useContext(ContextGlobal); // Usa el contexto global y la función createReservation
-  const { products } = state;
+  const { state, dispatch } = useContext(ContextGlobal);
+  const { products, selectedProduct } = state;
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [selectedDates, setSelectedDates] = useState([]);
+  const [error, setError] = useState(null);
 
-  const productId = id;
-  const product = products.find((item) => item.id === productId);
+  useEffect(() => {
+    const product = products.find((item) => item.id === id);
+    if (product) {
+      dispatch({ type: "SET_SELECTED_PRODUCT", payload: product });
+    }
+  }, [id, products, dispatch]);
 
-  if (!product) {
+  if (!selectedProduct) {
     return <div>Producto no encontrado</div>;
   }
 
-  const handleReservationClick = async () => {
-    try {
-      console.log("Selected dates: ", selectedDates);
-      await createReservation(product, selectedDates);
-      navigate("/reservation");
-    } catch (error) {
-      console.error("Error al iniciar la reserva:", error);
-      alert(
-        "Hubo un error al iniciar la reserva. Por favor, intenta de nuevo."
-      );
+  const handleStartReservationClick = () => {
+    if (selectedDates.length !== 2) {
+      setError("Por favor selecciona un rango de fechas válido.");
+      return;
     }
+
+    dispatch({ type: "SET_SELECTED_DATES", payload: selectedDates });
+    navigate("/reservation");
   };
 
   const handleDateChange = (dates) => {
     setSelectedDates(dates);
+    setError(null);
   };
 
   return (
     <div className="detail-container">
       <div className="detail-card-grid">
         <div className="detail-card">
-          <h1>{product.name}</h1>
-          <p className="text-justify">{product.description}</p>
-          <img src={product.img} alt={product.name} />
-          <p>Precio: {product.price}</p>
-          <p>Categoría: {product.category}</p>
+          <h1>{selectedProduct.name}</h1>
+          <p className="text-justify">{selectedProduct.description}</p>
+          <img src={selectedProduct.img} alt={selectedProduct.name} />
+          <p>Precio: {selectedProduct.price}</p>
+          <p>Categoría: {selectedProduct.category}</p>
           <BlackButton />
         </div>
         <div className="calendar-card">
           <h2>Selecciona Fechas</h2>
           <DualMonthCalendar onDateChange={handleDateChange} />
+          {error && <p className="error-message">{error}</p>}
           <button
-            className="ver-reserva-button"
-            onClick={handleReservationClick}
+            className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+            onClick={handleStartReservationClick}
           >
             Iniciar Reserva
           </button>

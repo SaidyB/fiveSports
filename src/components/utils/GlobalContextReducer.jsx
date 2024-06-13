@@ -1,15 +1,17 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import React, { createContext, useContext, useReducer, useEffect } from "react";
+import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
-import { useAuthContext } from "../utils/AuthContext"; // Importa el contexto de autenticación
+import { useAuthContext } from "../utils/AuthContext";
 
 export const ContextGlobal = createContext();
 
 export const initialState = {
   darkMode: false,
   products: [],
-  selectedProduct: null,
-  user: null, // Añadir el usuario al estado global
+  selectedProduct: JSON.parse(localStorage.getItem("selectedProduct")) || null,
+  selectedDates: JSON.parse(localStorage.getItem("selectedDates")) || [],
+  user: null,
+  showConfirmButton: true,
 };
 
 const objectReducer = (state, action) => {
@@ -19,11 +21,17 @@ const objectReducer = (state, action) => {
     case "SET_PRODUCTS":
       return { ...state, products: action.payload };
     case "SET_SELECTED_PRODUCT":
+      localStorage.setItem("selectedProduct", JSON.stringify(action.payload));
       return { ...state, selectedProduct: action.payload };
+    case "SET_SELECTED_DATES":
+      localStorage.setItem("selectedDates", JSON.stringify(action.payload));
+      return { ...state, selectedDates: action.payload };
     case "SET_USER":
       return { ...state, user: action.payload };
     case "CREATE_RESERVATION":
       return { ...state, reservation: action.payload };
+    case "TOGGLE_CONFIRM_BUTTON":
+      return { ...state, showConfirmButton: action.payload };
     default:
       return state;
   }
@@ -31,7 +39,7 @@ const objectReducer = (state, action) => {
 
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(objectReducer, initialState);
-  const { user } = useAuthContext(); // Obtén el usuario del contexto de autenticación
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -65,36 +73,52 @@ export const ContextProvider = ({ children }) => {
     }
   }, [user]);
 
+  const checkAvailability = async (productId, fromDate, toDate) => {
+    const q = query(
+      collection(db, "reservations"),
+      where("productId", "==", productId),
+      where("toDate", ">=", fromDate),
+      where("fromDate", "<=", toDate)
+    );
+
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.empty;
+  };
+
   const createReservation = async (product, selectedDates) => {
     if (!selectedDates || selectedDates.length !== 2) {
       throw new Error("No dates selected or incorrect date range");
     }
 
+    const fromDate = selectedDates[0];
+    const toDate = selectedDates[1];
+
+    const isAvailable = await checkAvailability(product.id, fromDate, toDate);
+    if (!isAvailable) {
+      throw new Error("Product not available for the selected dates");
+    }
+
     const reservation = {
       productId: product.id,
       productName: product.name,
-      fromDate: selectedDates[0].toISOString(),
-      toDate: selectedDates[1].toISOString(),
+      fromDate: fromDate.toISOString(),
+      toDate: toDate.toISOString(),
       createdAt: new Date().toISOString(),
     };
 
     try {
-      console.log("Reservation data to be sent: ", reservation);
-      // Enviar los datos de la reserva a Firestore
       await addDoc(collection(db, "reservations"), reservation);
-      dispatch({ type: "SET_SELECTED_PRODUCT", payload: product });
       dispatch({ type: "CREATE_RESERVATION", payload: reservation });
-      console.log("Reservation successfully created");
     } catch (error) {
       console.error("Error al crear la reserva:", error);
       throw error;
     }
   };
 
-  let data = { state, dispatch, createReservation };
+  const value = { state, dispatch, createReservation, checkAvailability };
 
   return (
-    <ContextGlobal.Provider value={data}>{children}</ContextGlobal.Provider>
+    <ContextGlobal.Provider value={value}>{children}</ContextGlobal.Provider>
   );
 };
 
