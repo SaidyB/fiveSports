@@ -24,7 +24,7 @@ const ReservationDetails = () => {
           setError("No se pudo encontrar la reserva.");
         }
       } catch (error) {
-        setError("hubo un problema al obtener la información de la reserva.");
+        setError("Hubo un problema al obtener la información de la reserva.");
       }
     };
 
