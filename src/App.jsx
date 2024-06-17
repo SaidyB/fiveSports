@@ -24,22 +24,30 @@ function App() {
           <Nav />
           <Routes>
             <Route index element={<Home />} />
-            <Route path={routes.verTodos} element={<VerTodos/>}/>
+            <Route path={routes.verTodos} element={<VerTodos />} />
             <Route path={routes.registrarse} element={<Sign />} />
             <Route path={routes.inicioSesion} element={<Login />} />
-            <Route path={`${routes.detalles}/:id`} element={<ProductDetail />} />
+            <Route
+              path={`${routes.detalles}/:id`}
+              element={<ProductDetail />}
+            />
             <Route path={routes.admin} element={<CreateProduct />} />
-            <Route path={`${routes.categoria}/:category`} element={<VerCategoria/>} />
-            <Route path={routes.Profile} element={
-              <ProtectedRoute>
-                <UsuarioRegistrado/>
-              </ProtectedRoute>
-            }/>
+            <Route
+              path={`${routes.categoria}/:category`}
+              element={<VerCategoria />}
+            />
+            <Route
+              path={routes.Profile}
+              element={
+                <ProtectedRoute>
+                  <UsuarioRegistrado />
+                </ProtectedRoute>
+              }
+            />
             <Route path={routes.VerReserva} element={<ReservationDates />} />
           </Routes>
           <Footer />
         </AuthProvider>
-        
       </div>
     </>
   );

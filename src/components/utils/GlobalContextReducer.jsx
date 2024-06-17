@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useAuthContext } from "../utils/AuthContext";
 
@@ -8,45 +8,30 @@ export const ContextGlobal = createContext();
 export const initialState = {
   darkMode: false,
   products: [],
-  selectedProduct: null,
+  selectedProduct: JSON.parse(localStorage.getItem("selectedProduct")) || null,
+  selectedDates: JSON.parse(localStorage.getItem("selectedDates")) || [],
   user: null,
-  checkIn: '',
-  checkOut: ''
+  showConfirmButton: true,
 };
 
 const objectReducer = (state, action) => {
   switch (action.type) {
     case "CHANGE_MODE":
-      const newDarkMode = !state.darkMode;
-      return {
-        ...state,
-        darkMode: newDarkMode,
-      };
+      return { ...state, darkMode: !state.darkMode };
     case "SET_PRODUCTS":
-      return {
-        ...state,
-        products: action.payload,
-      };
+      return { ...state, products: action.payload };
     case "SET_SELECTED_PRODUCT":
-      return {
-        ...state,
-        selectedProduct: action.payload,
-      };
+      localStorage.setItem("selectedProduct", JSON.stringify(action.payload));
+      return { ...state, selectedProduct: action.payload };
+    case "SET_SELECTED_DATES":
+      localStorage.setItem("selectedDates", JSON.stringify(action.payload));
+      return { ...state, selectedDates: action.payload };
     case "SET_USER":
-      return {
-        ...state,
-        user: action.payload,
-      };
-    case "SET_CHECKIN":
-      return {
-        ...state,
-        checkIn: action.payload,
-      };
-    case "SET_CHECKOUT":
-      return {
-        ...state,
-        checkOut: action.payload,
-      };
+      return { ...state, user: action.payload };
+    case "CREATE_RESERVATION":
+      return { ...state, reservation: action.payload };
+    case "TOGGLE_CONFIRM_BUTTON":
+      return { ...state, showConfirmButton: action.payload };
     default:
       return state;
   }
@@ -59,27 +44,23 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productosRef = collection(db, 'products');
+        const productosRef = collection(db, "products");
         const resp = await getDocs(productosRef);
         const products = resp.docs.map(async (doc) => {
           const productData = doc.data();
           const productId = doc.id;
-          const bookingsRef = collection(db, 'products', productId, 'bookings');
+          const bookingsRef = collection(db, "products", productId, "bookings");
           const bookingsSnapshot = await getDocs(bookingsRef);
           const bookingsData = bookingsSnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
           }));
-          return {
-            id: productId,
-            ...productData,
-            bookings: bookingsData,
-          };
+          return { id: productId, ...productData, bookings: bookingsData };
         });
         const productsWithData = await Promise.all(products);
-        dispatch({ type: 'SET_PRODUCTS', payload: productsWithData });
+        dispatch({ type: "SET_PRODUCTS", payload: productsWithData });
       } catch (error) {
-        console.error('Error fetching products: ', error);
+        console.error("Error fetching products: ", error);
       }
     };
 
@@ -88,14 +69,56 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      dispatch({ type: 'SET_USER', payload: user });
+      dispatch({ type: "SET_USER", payload: user });
     }
   }, [user]);
 
-  let data = { state, dispatch };
+  const checkAvailability = async (productId, fromDate, toDate) => {
+    const q = query(
+      collection(db, "reservations"),
+      where("productId", "==", productId),
+      where("toDate", ">=", fromDate),
+      where("fromDate", "<=", toDate)
+    );
+
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.empty;
+  };
+
+  const createReservation = async (product, selectedDates) => {
+    if (!selectedDates || selectedDates.length !== 2) {
+      throw new Error("No dates selected or incorrect date range");
+    }
+
+    const fromDate = selectedDates[0];
+    const toDate = selectedDates[1];
+
+    const isAvailable = await checkAvailability(product.id, fromDate, toDate);
+    if (!isAvailable) {
+      throw new Error("Product not available for the selected dates");
+    }
+
+    const reservation = {
+      productId: product.id,
+      productName: product.name,
+      fromDate: fromDate.toISOString(),
+      toDate: toDate.toISOString(),
+      createdAt: new Date().toISOString(),
+    };
+
+    try {
+      await addDoc(collection(db, "reservations"), reservation);
+      dispatch({ type: "CREATE_RESERVATION", payload: reservation });
+    } catch (error) {
+      console.error("Error al crear la reserva:", error);
+      throw error;
+    }
+  };
+
+  const value = { state, dispatch, createReservation, checkAvailability };
 
   return (
-    <ContextGlobal.Provider value={data}>{children}</ContextGlobal.Provider>
+    <ContextGlobal.Provider value={value}>{children}</ContextGlobal.Provider>
   );
 };
 
