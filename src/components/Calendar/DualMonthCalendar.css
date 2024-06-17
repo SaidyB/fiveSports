@@ -29,6 +29,11 @@
     color: #ccc; /* Color de texto para las fechas deshabilitadas */
     pointer-events: none; /* Deshabilita la interacción con las fechas deshabilitadas */
   }
+
+  .selected-date {
+    background-color: #90ee90; /* Color de fondo para las fechas seleccionadas */
+    text-decoration: line-through; /* Tachar la fecha */
+  }
   
   @media (max-width: 768px) {
     .react-calendar {
