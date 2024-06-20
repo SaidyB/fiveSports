@@ -7,7 +7,7 @@ import DualMonthCalendar from "../Calendar/DualMonthCalendar";
 
 const ProductDetail = () => {
   const { state, dispatch } = useContext(ContextGlobal);
-  const { products, selectedProduct } = state;
+  const { products, reservations, selectedProduct } = state;
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -24,6 +24,10 @@ const ProductDetail = () => {
   if (!selectedProduct) {
     return <div>Producto no encontrado</div>;
   }
+
+  const productReservations = reservations.filter(
+    (reservation) => reservation.productId === selectedProduct.id
+  );
 
   const handleStartReservationClick = () => {
     if (selectedDates.length !== 2) {
@@ -53,7 +57,10 @@ const ProductDetail = () => {
         </div>
         <div className="calendar-card">
           <h2>Selecciona Fechas</h2>
-          <DualMonthCalendar onDateChange={handleDateChange} />
+          <DualMonthCalendar
+            onDateChange={handleDateChange}
+            reservations={productReservations}
+          />
           {error && <p className="error-message">{error}</p>}
           <button
             className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
