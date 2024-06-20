@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./DualMonthCalendar.css";
+import moment from "moment";
 
-const DualMonthCalendar = ({ onDateChange }) => {
+const DualMonthCalendar = ({ onDateChange, reservations }) => {
   const [date, setDate] = useState([]);
 
   const handleDateChange = (newDate) => {
@@ -13,11 +14,27 @@ const DualMonthCalendar = ({ onDateChange }) => {
     }
   };
 
+  const isDateReserved = (date) => {
+    return reservations.some((reservation) => {
+      const reservationStart = moment(reservation.fromDate);
+      const reservationEnd = moment(reservation.toDate);
+      return date >= reservationStart && date <= reservationEnd;
+    });
+  };
+
   const tileDisabled = ({ date }) => {
     const today = new Date();
     return (
-      date < new Date(today.getFullYear(), today.getMonth(), today.getDate())
+      date < new Date(today.getFullYear(), today.getMonth(), today.getDate()) ||
+      isDateReserved(date)
     );
+  };
+
+  const tileClassName = ({ date }) => {
+    if (isDateReserved(date)) {
+      return 'reserved-date';
+    }
+    return null;
   };
 
   return (
@@ -26,6 +43,7 @@ const DualMonthCalendar = ({ onDateChange }) => {
         onChange={handleDateChange}
         value={date}
         tileDisabled={tileDisabled}
+        tileClassName={tileClassName}
         selectRange={true}
         minDetail="month"
         maxDetail="month"

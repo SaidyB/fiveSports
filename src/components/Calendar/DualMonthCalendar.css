@@ -5,6 +5,11 @@
   width: 99%;
 }
 
+.reserved-date {
+  background-color: rgba(255, 0, 0, 0.3) !important;
+  color: white !important;
+}
+
 .react-calendar {
   max-width: 100%; /* Ajusta el ancho máximo */
   width: auto;
