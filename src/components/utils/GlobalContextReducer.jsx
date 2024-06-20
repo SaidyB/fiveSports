@@ -12,6 +12,7 @@ export const initialState = {
   selectedDates: JSON.parse(localStorage.getItem("selectedDates")) || [],
   user: null,
   showConfirmButton: true,
+  reservations: [],
 };
 
 const objectReducer = (state, action) => {
@@ -29,9 +30,11 @@ const objectReducer = (state, action) => {
     case "SET_USER":
       return { ...state, user: action.payload };
     case "CREATE_RESERVATION":
-      return { ...state, reservation: action.payload };
+      return { ...state, reservations: [...state.reservations, action.payload] };
     case "TOGGLE_CONFIRM_BUTTON":
       return { ...state, showConfirmButton: action.payload };
+    case "SET_RESERVATIONS":
+      return { ...state, reservations: action.payload };
     default:
       return state;
   }
@@ -73,6 +76,24 @@ export const ContextProvider = ({ children }) => {
     }
   }, [user]);
 
+  useEffect(() => {
+    const fetchReservations = async () => {
+      try {
+        const reservationsRef = collection(db, "reservations");
+        const resp = await getDocs(reservationsRef);
+        const reservations = resp.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        dispatch({ type: "SET_RESERVATIONS", payload: reservations });
+      } catch (error) {
+        console.error("Error fetching reservations: ", error);
+      }
+    };
+
+    fetchReservations();
+  }, []);
+
   const checkAvailability = async (productId, fromDate, toDate) => {
     const q = query(
       collection(db, "reservations"),
@@ -107,8 +128,8 @@ export const ContextProvider = ({ children }) => {
     };
 
     try {
-      await addDoc(collection(db, "reservations"), reservation);
-      dispatch({ type: "CREATE_RESERVATION", payload: reservation });
+      const docRef = await addDoc(collection(db, "reservations"), reservation);
+      dispatch({ type: "CREATE_RESERVATION", payload: { id: docRef.id, ...reservation } });
     } catch (error) {
       console.error("Error al crear la reserva:", error);
       throw error;
@@ -123,3 +144,4 @@ export const ContextProvider = ({ children }) => {
 };
 
 export const useGlobalReduceState = () => useContext(ContextGlobal);
+
