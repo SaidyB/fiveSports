@@ -44,11 +44,12 @@
 .textCategory {
   margin: 0rem 0rem 0.2rem;
   position: relative;
-  height: 32px;
+  height: 90%;
 }
 
 .custom-range-picker {
   margin-bottom: 0.2rem;
+  height: 90%;
 }
 
 .ant-picker-panels { 
@@ -90,7 +91,7 @@
 
 .textBuscar {
   margin-left: 0;
-  height: 32px;
+  height: 90%;
 }
 
 .textBuscar .btnBuscar {
@@ -254,7 +255,7 @@ h2 {
   }
 
   .container_reservation {
-    height: 140px;
+    height: 165px;
     margin: 2rem auto;
   }
 

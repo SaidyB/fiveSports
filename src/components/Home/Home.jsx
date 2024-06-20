@@ -15,7 +15,7 @@ const { Search } = Input;
 
 const Home = () => {
   const { state } = useGlobalReduceState();
-  const { products } = state;
+  const { products, reservations } = state;
   const [fromDate, setFromDate] = useState();
   const [toDate, setToDate] = useState();
   const [productsAvailable, setProductsAvailable] = useState([]);
@@ -37,7 +37,12 @@ const Home = () => {
   const dateFormat = "DD-MM-YYYY";
   console.log(fromDate);
   console.log(toDate);
+  console.log("availabels")
   console.log(productsAvailable);
+  console.log(reservations);
+  console.log("filtrados")
+  console.log(productsFiltered);
+  console.log(selectedCategory);
 
   const filterByDate = (dates) => {
     if (!dates || dates.length === 0) {
@@ -51,14 +56,18 @@ const Home = () => {
     setToDate(finalDate.format(dateFormat));
 
     const filteredProducts = products.filter((product) => {
-      if (!product.bookings || product.bookings.length === 0) {
+      const productReservations = reservations.filter(
+        (reservation) => reservation.productId === product.id
+      );
+
+      if (productReservations.length === 0) {
         return true; // No tiene reservas, está disponible
       } else {
-        return product.bookings.every((booking) => {
-          const bookingStart = moment(booking.fromdate, dateFormat);
-          const bookingEnd = moment(booking.todate, dateFormat);
+        return productReservations.every((reservation) => {
+          const reservationStart = moment(reservation.fromDate);
+          const reservationEnd = moment(reservation.toDate);
           return (
-            finalDate.isBefore(bookingStart) || inicioDate.isAfter(bookingEnd)
+            finalDate.isBefore(reservationStart) || inicioDate.isAfter(reservationEnd)
           );
         });
       }
@@ -122,6 +131,13 @@ const Home = () => {
         <div className="title">
           <h1>Busca los mejores productos!</h1>
         </div>
+        {/* Añadido parágrafo descriptivo */}
+        <p
+          style={{ color: "white", marginRight: 15, marginTop: 5 }}
+          className="search-description"
+        >
+          Encuentra tu producto filtrando o usando la barra buscadora
+        </p>
         <div className="container_calendar">
           <div className="textCategory">
             <Button
@@ -160,13 +176,6 @@ const Home = () => {
           </div>
         </div>
         <div className="search-bar">
-          {/* Añadido parágrafo descriptivo */}
-          <p
-            style={{ color: "white", marginRight: 15, marginTop: 5 }}
-            className="search-description"
-          >
-            Encuentra tu producto
-          </p>
           <Search
             className="inputBuscar"
             placeholder="Buscar productos"
@@ -204,22 +213,22 @@ const Home = () => {
         <h2 className="font-bold text-2xl">Categorias</h2>
       </div>
       <article className="sectionCategory">
-        <Link className="cardCategory" to={`${routes.categoria}/gimnasio`}>
-          <CardCategory img={"/public/img/Categorias/gimnasio.png"}>
-            Gimnasio
-          </CardCategory>
-        </Link>
-        <Link className="cardCategory" to={`${routes.categoria}/deportes`}>
-          <CardCategory img={"/public/img/Categorias/deporte.png"}>
-            Deportes
-          </CardCategory>
-        </Link>
-        <Link className="cardCategory" to={`${routes.categoria}/outdoor`}>
-          <CardCategory img={"/public/img/Categorias/outdoor.png"}>
-            Outdoor
-          </CardCategory>
-        </Link>
-      </article>
+    <Link className="cardCategory" to={`${routes.categoria}/gimnasio`}>
+      <CardCategory img={"/public/img/Categorias/gimnasio.png"}>
+        Gimnasio
+      </CardCategory>
+    </Link>
+    <Link className="cardCategory" to={`${routes.categoria}/deportes`}>
+      <CardCategory img={"/public/img/Categorias/deporte.png"}>
+        Deportes
+      </CardCategory>
+    </Link>
+    <Link className="cardCategory" to={`${routes.categoria}/outdoor`}>
+      <CardCategory img={"/public/img/Categorias/outdoor.png"}>
+        Outdoor
+      </CardCategory>
+    </Link>
+  </article>
     </div>
   );
 };
