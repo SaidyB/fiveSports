@@ -120,6 +120,9 @@
 .ver-reserva-button:hover {
   background-color: #5a67d8;
 }
+.error-message{
+  color: red;
+}
 
 @media (max-width: 768px) {
   .detail-card-grid {

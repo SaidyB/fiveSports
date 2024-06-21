@@ -4,6 +4,7 @@ import "./ProductosCard.css";
 import { ContextGlobal } from "../utils/GlobalContextReducer";
 import BlackButton from "./BlackButton";
 import DualMonthCalendar from "../Calendar/DualMonthCalendar";
+import moment from "moment";
 
 const ProductDetail = () => {
   const { state, dispatch } = useContext(ContextGlobal);
@@ -13,6 +14,8 @@ const ProductDetail = () => {
 
   const [selectedDates, setSelectedDates] = useState([]);
   const [error, setError] = useState(null);
+  const [fromDate, setFromDate] = useState(null);
+  const [toDate, setToDate] = useState(null);
 
   useEffect(() => {
     const product = products.find((item) => item.id === id);
@@ -33,6 +36,17 @@ const ProductDetail = () => {
     if (selectedDates.length !== 2) {
       setError("Por favor selecciona un rango de fechas válido.");
       return;
+    } else if (
+      !productReservations.every((reservation) => {
+        const reservationStart = moment(reservation.fromDate);
+        const reservationEnd = moment(reservation.toDate);
+        return (
+          toDate.isBefore(reservationStart) || fromDate.isAfter(reservationEnd)
+        );
+      })
+    ) {
+      setError("El rango de la reserva no pueden incluir días ya reservados.");
+      return;
     }
 
     dispatch({ type: "SET_SELECTED_DATES", payload: selectedDates });
@@ -41,6 +55,8 @@ const ProductDetail = () => {
 
   const handleDateChange = (dates) => {
     setSelectedDates(dates);
+    setFromDate(moment(dates[0]));
+    setToDate(moment(dates[1]));
     setError(null);
   };
 
@@ -63,7 +79,7 @@ const ProductDetail = () => {
           />
           {error && <p className="error-message">{error}</p>}
           <button
-            className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+            className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-2"
             onClick={handleStartReservationClick}
           >
             Iniciar Reserva
