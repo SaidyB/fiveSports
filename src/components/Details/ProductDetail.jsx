@@ -5,12 +5,15 @@ import { ContextGlobal } from "../utils/GlobalContextReducer";
 import BlackButton from "./BlackButton";
 import DualMonthCalendar from "../Calendar/DualMonthCalendar";
 import moment from "moment";
+import { useAuthContext } from "../utils/AuthContext";
+import { routes } from "../utils/routes";
 
 const ProductDetail = () => {
   const { state, dispatch } = useContext(ContextGlobal);
   const { products, reservations, selectedProduct } = state;
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuthContext();
 
   const [selectedDates, setSelectedDates] = useState([]);
   const [error, setError] = useState(null);
@@ -33,6 +36,16 @@ const ProductDetail = () => {
   );
 
   const handleStartReservationClick = () => {
+    if (!user) {
+      navigate(routes.inicioSesion, {
+        state: {
+          from: location.pathname,
+          message: "El login es obligatorio para iniciar una reserva. Si no está registrado, por favor regístrese",
+        },
+      });
+      return;
+    }
+
     if (selectedDates.length !== 2) {
       setError("Por favor selecciona un rango de fechas válido.");
       return;
