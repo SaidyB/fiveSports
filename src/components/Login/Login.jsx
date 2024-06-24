@@ -11,8 +11,8 @@ import {
 import { LockOutlined } from "@mui/icons-material";
 import "./Login.css"; // Importa el archivo de CSS
 import { useAuthContext } from "../utils/AuthContext";
-import { useNavigate } from "react-router-dom";
-import {routes} from '../utils/routes'
+import { useNavigate, useLocation } from "react-router-dom";
+import { routes } from "../utils/routes";
 import { Alert } from "../utils/Alert";
 
 const Login = () => {
@@ -23,7 +23,8 @@ const Login = () => {
 
   const { login } = useAuthContext();
   const navigate = useNavigate();
-  const [error, setError]= useState();
+  const location = useLocation();
+  const [error, setError] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,18 +36,23 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('')
+    setError('');
     try {
       await login(user.email, user.password);
-      navigate(routes.Profile);
-    } catch(error){
-        switch(error.code){
-          case 'auth/invalid-credential':
-            return setError('Verifique sus datos')
-        }
+      // Redirigir al perfil del usuario si existe un mensaje en location.state
+      if (location.state?.message) {
+        navigate(routes.Profile, { replace: true });
+      } else {
+        navigate(location.state?.from || routes.Profile, { replace: true });
+      }
+    } catch (error) {
+      switch (error.code) {
+        case 'auth/invalid-credential':
+          return setError('Verifique sus datos');
+        default:
+          return setError('Error en el inicio de sesión');
+      }
     }
-    
-    // console.log("Login form data:", user);
   };
 
   return (
@@ -59,8 +65,13 @@ const Login = () => {
           <Typography variant="h5" gutterBottom>
             Login
           </Typography>
+          {location.state?.message && (
+            <Typography variant="body1" color="error">
+              {location.state.message}
+            </Typography>
+          )}
           <div>
-            {error && <Alert message={error}/>}
+            {error && <Alert message={error} />}
             <form onSubmit={handleSubmit} className="form">
               <TextField
                 label="Email"
@@ -95,7 +106,6 @@ const Login = () => {
               </Button>
             </form>
           </div>
-          
         </Box>
       </Paper>
     </Container>

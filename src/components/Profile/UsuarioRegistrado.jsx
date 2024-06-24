@@ -18,7 +18,8 @@ const UsuarioRegistrado = () => {
     console.log("Cerró sesión");
   };
 
-  if (loading) return <h1>loading</h1>;
+  if (loading) return <h1>Loading...</h1>;
+  if (!user) return <h1>Usuario no autenticado</h1>;
 
   // Obtener las iniciales del nombre y apellido
   const getInitials = (name) => {
@@ -35,12 +36,12 @@ const UsuarioRegistrado = () => {
         <CardHeader
           avatar={
             <Avatar className="avatar" sx={{ width: 80, height: 80 }}>
-              {getInitials(user.displayName)}
+              {user.displayName ? getInitials(user.displayName) : 'U'}
             </Avatar>
           }
           title={
             <Typography variant="h5" className="perfil-titulo">
-              {user.displayName}
+              {user.displayName || 'Usuario'}
             </Typography>
           }
         />
