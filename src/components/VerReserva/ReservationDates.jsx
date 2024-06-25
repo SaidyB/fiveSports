@@ -1,33 +1,67 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { TextField, Button, Container, Paper, Typography } from "@mui/material";
 import { ContextGlobal } from "../utils/GlobalContextReducer";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import "./ReservationDates.css"; // Asegúrate de crear e importar el archivo CSS
 
 const ReservationDates = () => {
   const { state, dispatch } = useContext(ContextGlobal);
-  const { selectedProduct, user } = state;
+  const { selectedProduct, user, selectedDates } = state;
+  const [address, setAddress] = useState("");
+  const [confirmedAddress, setConfirmedAddress] = useState("");
 
   if (!selectedProduct) {
-    return <div>No se ha seleccionado ningún producto.</div>;
+    return (
+      <div className="no-product">No se ha seleccionado ningún producto.</div>
+    );
   }
 
   if (!user) {
-    return <div>No se ha encontrado información del usuario.</div>;
+    return (
+      <div className="no-user">
+        No se ha encontrado información del usuario.
+      </div>
+    );
   }
 
   const handleConfirmClick = async () => {
+    if (!selectedDates || selectedDates.length !== 2) {
+      Swal.fire({
+        title: "Error",
+        text: "Por favor selecciona un rango de fechas.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+      return;
+    }
+
+    if (!address.trim()) {
+      Swal.fire({
+        title: "Error",
+        text: "Por favor ingresa tu dirección de domicilio.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+      return;
+    }
+
     try {
       const reservation = {
         productId: selectedProduct.id,
         productName: selectedProduct.name,
-        fromDate: new Date("2024-06-10").toISOString(),
-        toDate: new Date("2024-06-15").toISOString(),
+        fromDate: new Date(selectedDates[0]).toISOString(),
+        toDate: new Date(selectedDates[1]).toISOString(),
         createdAt: new Date().toISOString(),
         userId: user.uid,
+        address: address.trim(),
       };
 
       await addDoc(collection(db, "reservations"), reservation);
+
+      setConfirmedAddress(address.trim());
+      setAddress("");
 
       Swal.fire({
         title: "¡Reserva Confirmada!",
@@ -49,39 +83,70 @@ const ReservationDates = () => {
   };
 
   return (
-    <section className="text-gray-600 body-font mt-10">
-      <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+    <Container maxWidth="sm">
+      <Paper elevation={3} className="reservation-content">
         <img
-          className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
+          className="product-image"
           alt={selectedProduct.name}
           src={selectedProduct.img}
         />
-        <div className="text-center lg:w-2/3 w-full">
-          <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+        <div className="reservation-details">
+          <Typography variant="h4" className="product-name">
             {selectedProduct.name}
-          </h1>
-          <p className="mb-8 leading-relaxed">{selectedProduct.description}</p>
-          <p className="mb-8 leading-relaxed">
-            Sucursal de entrega: Bogota D.C.
-          </p>
-          <p className="mb-8 leading-relaxed">Nombre: {user.displayName}</p>
-          <p className="mb-8 leading-relaxed">Correo: {user.email}</p>
-          <p className="mb-8 leading-relaxed">Check in: 10-06-2024</p>
-          <p className="mb-8 leading-relaxed">Check out: 15-06-2024</p>
-          <p className="mb-8 leading-relaxed">
-            Precio: {selectedProduct.price}
-          </p>
-          <div className="flex justify-center">
-            <button
-              className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+          </Typography>
+          <Typography variant="body1" className="product-description">
+            {selectedProduct.description}
+          </Typography>
+          <Typography variant="body1" className="product-info">
+            <strong>Sucursal de entrega:</strong> Bogota D.C.
+          </Typography>
+          <Typography variant="body1" className="product-info">
+            <strong>Nombre:</strong> {user.displayName}
+          </Typography>
+          <Typography variant="body1" className="product-info">
+            <strong>Correo:</strong> {user.email}
+          </Typography>
+          {selectedDates && selectedDates.length === 2 && (
+            <>
+              <Typography variant="body1" className="product-info">
+                <strong>Check in:</strong>{" "}
+                {new Date(selectedDates[0]).toLocaleDateString()}
+              </Typography>
+              <Typography variant="body1" className="product-info">
+                <strong>Check out:</strong>{" "}
+                {new Date(selectedDates[1]).toLocaleDateString()}
+              </Typography>
+            </>
+          )}
+          <Typography variant="body1" className="product-info">
+            <strong>Precio:</strong> {selectedProduct.price}
+          </Typography>
+          <TextField
+            label="Confirma tu dirección de domicilio"
+            fullWidth
+            multiline
+            rows={3}
+            margin="normal"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+          <div className="button-container">
+            <Button
+              variant="contained"
+              color="primary"
               onClick={handleConfirmClick}
             >
               Confirmar Reserva
-            </button>
+            </Button>
           </div>
+          {confirmedAddress && (
+            <Typography variant="body1" className="confirmed-address">
+              <strong>Dirección confirmada:</strong> {confirmedAddress}
+            </Typography>
+          )}
         </div>
-      </div>
-    </section>
+      </Paper>
+    </Container>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./DualMonthCalendar.css";
@@ -32,7 +32,7 @@ const DualMonthCalendar = ({ onDateChange, reservations }) => {
 
   const tileClassName = ({ date }) => {
     if (isDateReserved(date)) {
-      return 'reserved-date';
+      return "reserved-date";
     }
     return null;
   };
