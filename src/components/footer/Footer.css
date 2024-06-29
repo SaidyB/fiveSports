@@ -5,7 +5,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 30px; /* Reducir la altura del footer */
+  height: 30px; /* Mantener la altura del footer */
   z-index: 2;
   display: flex;
   align-items: center; /* Asegura que el contenido esté centrado verticalmente */
@@ -16,7 +16,7 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: flex-end; /* Alinear el contenido a la derecha */
+  justify-content: center; /* Alinear el contenido a la derecha */
   align-items: center;
   height: 100%; /* Asegura que el contenido ocupe toda la altura del footer */
 }
