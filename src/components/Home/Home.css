@@ -331,3 +331,46 @@ h2 {
     align-items: flex-start;
   }
 }
+
+/* Estilos para el ícono flotante de WhatsApp */
+.whatsapp_float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  right: 20px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatsapp_float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp_icon {
+  width: 40px;
+  height: 40px;
+}
+
+@media (min-width: 768px) {
+  .whatsapp_float {
+    width: 70px;
+    height: 70px;
+    bottom: 15%;
+    right: 30px;
+  }
+
+  .whatsapp_icon {
+    width: 45px;
+    height: 45px;
+  }
+}
