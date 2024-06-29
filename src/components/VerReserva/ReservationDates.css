@@ -5,6 +5,15 @@ body {
   padding: 0;
 }
 
+.reservation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Hace que la card esté centrada verticalmente */
+  padding: 20px;
+  margin-top: 60px; /* Ajusta este valor según la altura de tu encabezado */
+}
+
 .reservation-content {
   padding: 20px;
   border-radius: 10px;
@@ -52,4 +61,28 @@ body {
   margin-top: 50px;
   font-size: 20px;
   color: #666;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .reservation-container {
+    margin-top: 80px; /* Ajusta este valor si es necesario */
+    padding: 10px;
+  }
+
+  .reservation-content {
+    padding: 15px;
+  }
+
+  .product-info {
+    font-size: 14px;
+  }
+
+  .confirmed-address {
+    font-size: 14px;
+  }
 }

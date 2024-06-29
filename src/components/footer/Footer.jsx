@@ -12,7 +12,7 @@ const Footer = () => {
             alt="Logo de la empresa"
             className="logo"
           />
-          <span className="copyright">&copy; 2024 Empresa XYZ</span>
+          <span className="copyright">&copy; 2024 Empresa Five Sports</span>
         </div>
       </div>
     </footer>
