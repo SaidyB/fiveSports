@@ -229,6 +229,18 @@ const Home = () => {
       </CardCategory>
     </Link>
   </article>
+  <a
+        href="https://wa.me/573138129053?text=Hola quiero informacion de su negocio"
+        className="whatsapp_float"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png"
+          alt="WhatsApp"
+          className="whatsapp_icon"
+        />
+      </a>
     </div>
   );
 };
