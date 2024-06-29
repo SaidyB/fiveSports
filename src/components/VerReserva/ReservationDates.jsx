@@ -4,27 +4,13 @@ import { TextField, Button, Container, Paper, Typography } from "@mui/material";
 import { ContextGlobal } from "../utils/GlobalContextReducer";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
-import "./ReservationDates.css"; // Asegúrate de crear e importar el archivo CSS
+import "./ReservationDates.css";
 
 const ReservationDates = () => {
   const { state, dispatch } = useContext(ContextGlobal);
   const { selectedProduct, user, selectedDates } = state;
   const [address, setAddress] = useState("");
   const [confirmedAddress, setConfirmedAddress] = useState("");
-
-  if (!selectedProduct) {
-    return (
-      <div className="no-product">No se ha seleccionado ningún producto.</div>
-    );
-  }
-
-  if (!user) {
-    return (
-      <div className="no-user">
-        No se ha encontrado información del usuario.
-      </div>
-    );
-  }
 
   const handleConfirmClick = async () => {
     if (!selectedDates || selectedDates.length !== 2) {
@@ -83,7 +69,7 @@ const ReservationDates = () => {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" className="reservation-container">
       <Paper elevation={3} className="reservation-content">
         <img
           className="product-image"
@@ -135,6 +121,7 @@ const ReservationDates = () => {
               variant="contained"
               color="primary"
               onClick={handleConfirmClick}
+              fullWidth // Asegura que el botón ocupe todo el ancho en móviles
             >
               Confirmar Reserva
             </Button>

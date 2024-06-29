@@ -5,7 +5,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 40px; /* Reducir la altura del footer */
+  height: 30px; /* Reducir la altura del footer */
   z-index: 2;
   display: flex;
   align-items: center; /* Asegura que el contenido esté centrado verticalmente */
@@ -44,7 +44,7 @@
   .footer-content {
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
+    padding: 5px 10px; /* Ajusta el padding para espacio adicional */
   }
 
   .footer-left {
@@ -54,11 +54,11 @@
   }
 
   .logo {
-    margin: 0 0 10px 0;
-    width: 50px; /* Ajustar el tamaño de la imagen del logo */
+    margin: 0 0 5px 0; /* Ajusta el margen del logo */
+    width: 40px; /* Reducir el tamaño de la imagen del logo */
   }
 
   .copyright {
-    font-size: 1.2em; /* Mantener el tamaño de la fuente en dispositivos móviles */
+    font-size: 1em; /* Ajusta el tamaño de la fuente para dispositivos móviles */
   }
 }

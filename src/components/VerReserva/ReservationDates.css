@@ -9,9 +9,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Hace que la card esté centrada verticalmente */
+  min-height: calc(120vh - 85px); /* Ajusta la altura para evitar solapamiento con el encabezado */
   padding: 20px;
-  margin-top: 60px; /* Ajusta este valor según la altura de tu encabezado */
+  margin-top: 90px; /* Ajusta el margen superior para alejar la card de la parte superior */
 }
 
 .reservation-content {
@@ -70,7 +70,7 @@ body {
 
 @media (max-width: 600px) {
   .reservation-container {
-    margin-top: 80px; /* Ajusta este valor si es necesario */
+    margin-top: 100px; /* Ajusta el margen superior en móviles si es necesario */
     padding: 10px;
   }
 
@@ -84,5 +84,13 @@ body {
 
   .confirmed-address {
     font-size: 14px;
+  }
+
+  .button-container {
+    margin-top: 10px; /* Ajuste adicional para asegurar visibilidad del botón */
+  }
+
+  .reservation-content .MuiButton-root {
+    width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
   }
 }
