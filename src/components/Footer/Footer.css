@@ -5,7 +5,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 30px; /* Mantener la altura del footer */
+  height: 30px; /* Mantener la altura del footer en pantallas grandes */
   z-index: 2;
   display: flex;
   align-items: center; /* Asegura que el contenido esté centrado verticalmente */
@@ -16,7 +16,7 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: center; /* Alinear el contenido a la derecha */
+  justify-content: center; /* Alinear el contenido al centro */
   align-items: center;
   height: 100%; /* Asegura que el contenido ocupe toda la altura del footer */
 }
@@ -33,18 +33,21 @@
 
 .copyright {
   font-size: 1.2em; /* Incrementar el tamaño de la fuente */
+  white-space: nowrap; /* Evitar que el texto se corte */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Añadir puntos suspensivos si el texto es demasiado largo */
 }
 
 @media screen and (max-width: 768px) {
   .footer {
-    height: auto; /* Permite que el footer se ajuste automáticamente a la altura del contenido */
-    padding: 10px 0; /* Añade padding para mayor espacio */
+    height: 32px; /* Ajustar la altura del footer automáticamente */
+    padding: 5px 0; /* Añadir padding para mayor espacio */
   }
 
   .footer-content {
     flex-direction: column;
     align-items: center;
-    padding: 5px 10px; /* Ajusta el padding para espacio adicional */
+    padding: 5px 10px; /* Ajustar el padding para espacio adicional */
   }
 
   .footer-left {
@@ -54,11 +57,14 @@
   }
 
   .logo {
-    margin: 0 0 5px 0; /* Ajusta el margen del logo */
+    margin: 0 0 5px 0; /* Ajustar el margen del logo */
     width: 40px; /* Reducir el tamaño de la imagen del logo */
   }
 
   .copyright {
-    font-size: 1em; /* Ajusta el tamaño de la fuente para dispositivos móviles */
+    font-size: 0.8em; /* Reducir el tamaño de la fuente para dispositivos móviles */
+    white-space: center; /* Permitir que el texto se ajuste a múltiples líneas si es necesario */
+    text-align: center; /* Centrar el texto */
+    padding: 0 10px; /* Añadir padding para evitar que el texto toque los bordes */
   }
 }
