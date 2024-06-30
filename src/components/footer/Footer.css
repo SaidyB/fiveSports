@@ -40,8 +40,8 @@
 
 @media screen and (max-width: 768px) {
   .footer {
-    height: 32px; /* Ajustar la altura del footer automáticamente */
-    padding: 5px 0; /* Añadir padding para mayor espacio */
+    height: 20px; /* Ajustar la altura del footer automáticamente */
+    padding: 0px 0; /* Añadir padding para mayor espacio */
   }
 
   .footer-content {
@@ -57,12 +57,12 @@
   }
 
   .logo {
-    margin: 0 0 5px 0; /* Ajustar el margen del logo */
-    width: 40px; /* Reducir el tamaño de la imagen del logo */
+    margin: 0 0 0px 0; /* Ajustar el margen del logo */
+    width: 35px; /* Reducir el tamaño de la imagen del logo */
   }
 
   .copyright {
-    font-size: 0.8em; /* Reducir el tamaño de la fuente para dispositivos móviles */
+    font-size: 0.6em; /* Reducir el tamaño de la fuente para dispositivos móviles */
     white-space: center; /* Permitir que el texto se ajuste a múltiples líneas si es necesario */
     text-align: center; /* Centrar el texto */
     padding: 0 10px; /* Añadir padding para evitar que el texto toque los bordes */
